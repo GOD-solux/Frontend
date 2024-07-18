@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   width: 100%;
-  height: 60px;
-  border-bottom: 1px solid gray;
+  height: 100px;
+  //border-bottom: 1px solid gray;
 
   display: flex;
   justify-content: space-between;
@@ -24,12 +24,14 @@ const Navi = styled.div`
   gap: 30px;
 `;
 
-const NomalText = styled.div``;
+const NomalText = styled.div`
+  cursor: pointer;
+`;
 
 function Header({ login }) {
   return (
     <Wrapper>
-      <Logo>MOONTOUR</Logo>
+      <Logo>MUNTOUR</Logo>
       {login ? (
         <Navi>
           <NomalText>마이페이지</NomalText>
