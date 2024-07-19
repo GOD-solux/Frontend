@@ -4,6 +4,7 @@ import reset from "styled-reset";
 
 import Mainpage from "./pages/Mainpage";
 import Communitypage from "./pages/Communitypage";
+import Culturelistpage from "./pages/Culturelistpage";
 
 const GlobalStyles = createGlobalStyle`
   ${reset};
@@ -55,6 +56,7 @@ function App() {
           path="/community/book"
           element={<Communitypage category="도서" />}
         ></Route>
+        <Route path="/culturelist" element={<Culturelistpage />}></Route>
       </Routes>
     </Router>
   );

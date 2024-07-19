@@ -9,8 +9,7 @@ const Wrapper = styled.div`
   align-items: center;
 
   padding: 0 20px;
-  margin-top: 50px;
-  margin-bottom: 20px;
+  margin: 20px 0;
 `;
 
 const CategoryText = styled.div`
