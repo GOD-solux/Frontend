@@ -3,6 +3,9 @@ import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
 
 import Mainpage from "./pages/Mainpage";
+import SignUp from "./pages/SignUp";
+import Login from "./pages/Login";
+import PwFind from "./pages/PwFind";
 
 const GlobalStyles = createGlobalStyle`
   ${reset};
@@ -20,7 +23,6 @@ const GlobalStyles = createGlobalStyle`
     //임시 너비
     width: 80%;
 
-    border: 1px solid gray;
     
   }
   ::-webkit-scrollbar {
@@ -28,12 +30,24 @@ const GlobalStyles = createGlobalStyle`
   }
 `;
 
+
 function App() {
   return (
     <Router basename={process.env.PUBLIC_URL}>
       <GlobalStyles />
       <Routes>
-        <Route path="/" element={<Mainpage login={false} />}></Route>
+        <Route 
+          path="/" element={<Mainpage login={false} />}
+        ></Route>
+        <Route 
+          path="/sign-up" element={<SignUp login={false} />}
+        ></Route>
+        <Route 
+          path="/login" element={<Login login={false} />}
+        ></Route>
+        <Route 
+          path="/pw-find" element={<PwFind />}
+        ></Route>
       </Routes>
     </Router>
   );
