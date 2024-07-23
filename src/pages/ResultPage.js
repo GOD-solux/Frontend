@@ -4,6 +4,8 @@ import ResultBox from "../components/ResultPage/ResultBox";
 import Recommend from "../components/ResultPage/Recommend";
 import AgainBtn from "../components/ResultPage/AgainBtn";
 
+import {useNavigate} from 'react-router-dom';
+
 const Wrapper = styled.div`
   width: 100%;
 
@@ -34,14 +36,22 @@ const Container = styled.div`
   //임시
 `;
 
+
 function ResultPage(){
+
+const navigate = useNavigate(); 
+
+const handleAgainClick = () => {
+  navigate(`/typeTest/1`);
+};
+
     return(
         <Wrapper>
             <TestHeader/>
             <Container>
                 <ResultBox/>
                 <Recommend/>
-                <AgainBtn/>
+                <AgainBtn onClick={handleAgainClick}/>
             </Container>
         </Wrapper>
     );

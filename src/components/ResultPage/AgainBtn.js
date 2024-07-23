@@ -19,9 +19,9 @@ const StyledBtn = styled.div`
 `;
 
 // 다시하기
-function AgainBtn() {
+function AgainBtn({onClick}) {
     return (
-        <StyledBtn>다시하기</StyledBtn>
+        <StyledBtn onClick={onClick}>다시하기</StyledBtn>
     );
 }
 

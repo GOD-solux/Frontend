@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import {activity} from "../../components/ResultPage/results";
+import {useNavigate,useParams} from 'react-router-dom';
 
 const Wrapper=styled.div`
     width:20vw;
@@ -47,12 +49,13 @@ const CultureWrapper=styled.div`
 
 
 function Recommend(){
+    const {resultId}=useParams();
     return(
         <Wrapper>
             <Text>추천 문화 생활</Text>
             <CultureWrapper>
-                <Culture>{types[result][0]}</Culture>
-                <Culture>도서</Culture>
+                <Culture>{activity[resultId][0]}</Culture>
+                <Culture>{activity[resultId][1]}</Culture>
             </CultureWrapper>
         </Wrapper>
 

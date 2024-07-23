@@ -1,43 +1,32 @@
 import styled from "styled-components";
-import React, { useState } from 'react';
 
 const StyledBtn = styled.div`
-  background: ${props => props.backgroundColor};
+  background: ${props => props.selected ? '#6b88d1' : '#85a1e8'};
   border-radius: 70px;
   border: none;
   outline: none;
   width: 7vw;
   height: 6vh;
-
   color: white;
   font-weight: 600;
   font-size: 2.5vh;
   cursor: pointer;
-
-  display: flex; /* Flexbox 레이아웃을 사용하여 중앙 정렬 */
+  display: flex;
   align-items: center;
   justify-content: center;
-
-  margin-top:5%;
+  margin-top: 5%;
+  transition: background 0.3s;
 `;
 
-
-// Yes,No
-function AnswerBtn({children}) {
-    const [backgroundColor, setBackgroundColor] = useState('#85a1e8');
-
-  const handleClick = () => {
-    setBackgroundColor(backgroundColor === '#85a1e8' ? '#6b88d1' : '#85a1e8');
-  };
-
+const AnswerBtn = ({ onClick, selected, children }) => {
   return (
     <StyledBtn
-      backgroundColor={backgroundColor}
-      onClick={handleClick}
+      onClick={onClick}
+      selected={selected}
     >
       {children}
     </StyledBtn>
   );
-}
+};
 
 export default AnswerBtn;

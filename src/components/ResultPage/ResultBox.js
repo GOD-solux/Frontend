@@ -27,8 +27,10 @@ const ResultImage = styled.img`
 `;
 
 const Box=styled.div`
-    width:30%;
+    width:40%;
     height:70%;
+    
+   
 
     background-color:#A0B6EE;
     border-radius:30px;
@@ -39,13 +41,18 @@ const Box=styled.div`
     letter-spacing:0.5px;
     line-height:18px;
 
+    overflow:auto;
+
     display:flex;
     align-items:center;
+    text-align:center;
     justify-content: center;
     flex-direction: column;
 
     margin-top:1.5%;
     margin-bottom:1.5%;
+    margin-left:3%;
+    margin-right:3%;
 
     gap:15px;
 
@@ -53,16 +60,14 @@ const Box=styled.div`
 `;
 
 function ResultBox(){
-    const {result}=useParams();
+    const {resultId}=useParams();
     return(
         <Wrapper>
             <H1>당신의 유형은?</H1>
             <Box>
-                <H1>{types[result]}</H1>
-                <ResultImage src={images[result]} alt="types" />
-                {/* 정적인 활동과 감상을 좋아하는 사색가.<br/>
-                실내에서의 문화생활이 잘 어울립니다. */}
-                {descriptions[result]}
+                <H1>{types[resultId]}</H1>
+                <ResultImage src={images[resultId]} alt="types" />
+                <div dangerouslySetInnerHTML={{ __html: descriptions[resultId]}} />
             </Box>
             <H1>입니다.</H1>
         </Wrapper>
