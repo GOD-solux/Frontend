@@ -56,7 +56,7 @@ function Communitypage({ category }) {
   return (
     <Wrapper>
       <Header />
-      <CategoryHeader category={category} />
+      <CategoryHeader page="community" category={category} />
       <Container>
         <HashTagContainer>
           {HashTagList.map((v, i) => (
