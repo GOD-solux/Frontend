@@ -8,6 +8,8 @@ import Login from "./pages/Login";
 import PwFind from "./pages/PwFind";
 import Communitypage from "./pages/Communitypage";
 import Culturelistpage from "./pages/Culturelistpage";
+import NewPostPage from "./pages/NewPostPage";
+import ViewPostPage from "./pages/ViewPostPage";
 
 const GlobalStyles = createGlobalStyle`
   ${reset};
@@ -80,6 +82,14 @@ function App() {
         <Route
           path="/culturelist/book"
           element={<Culturelistpage page="culturelist" category="도서" />}
+        ></Route>
+        <Route
+          path="/new-post"
+          element={<NewPostPage/>}
+        ></Route>
+        <Route
+          path="/view-post"
+          element={<ViewPostPage/>}
         ></Route>
       </Routes>
     </Router>
