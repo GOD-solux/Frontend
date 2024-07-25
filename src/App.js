@@ -32,24 +32,15 @@ const GlobalStyles = createGlobalStyle`
   }
 `;
 
-
 function App() {
   return (
     <Router basename={process.env.PUBLIC_URL}>
       <GlobalStyles />
       <Routes>
-        <Route 
-          path="/" element={<Mainpage login={false} />}
-        ></Route>
-        <Route 
-          path="/sign-up" element={<SignUp login={false} />}
-        ></Route>
-        <Route 
-          path="/login" element={<Login login={false} />}
-        ></Route>
-        <Route 
-          path="/pw-find" element={<PwFind />}
         <Route path="/" element={<Mainpage login={false} />}></Route>
+        <Route path="/sign-up" element={<SignUp login={false} />}></Route>
+        <Route path="/login" element={<Login login={false} />}></Route>
+        <Route path="/pw-find" element={<PwFind />}></Route>
         <Route
           path="/community"
           element={<Communitypage category="전체" />}

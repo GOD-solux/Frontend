@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import Muntour from "../assets/logo.png"
+import Muntour from "../assets/logo.png";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -12,7 +12,6 @@ const Wrapper = styled.div`
   align-items: center;
   margin-top: 10px;
 `;
-
 
 const Logo = styled.div`
   font-size: 40px;
@@ -34,7 +33,7 @@ const Navi = styled.div`
   justify-content: center;
   align-items: center;
   gap: 30px;
-  label{
+  label {
     cursor: pointer;
   }
 `;
@@ -44,12 +43,15 @@ const NomalText = styled.div`
 `;
 
 function Header({ login }) {
-
   let navigate = useNavigate();
-  
+
   return (
     <Wrapper>
-      <Logo onClick={()=>{navigate("/")}}>
+      <Logo
+        onClick={() => {
+          navigate("/");
+        }}
+      >
         MUNTOUR
       </Logo>
       {login ? (
@@ -59,8 +61,22 @@ function Header({ login }) {
         </Navi>
       ) : (
         <Navi>
-          <label id="login" onClick={()=>{navigate("/login")}}>로그인</label>
-          <label id="signup" onClick={()=>{navigate("/sign-up")}}>회원가입</label>
+          <label
+            id="login"
+            onClick={() => {
+              navigate("/login");
+            }}
+          >
+            로그인
+          </label>
+          <label
+            id="signup"
+            onClick={() => {
+              navigate("/sign-up");
+            }}
+          >
+            회원가입
+          </label>
         </Navi>
       )}
     </Wrapper>
