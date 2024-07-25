@@ -1,8 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
-
 import Mainpage from "./pages/Mainpage";
+import MyPage from "./pages/MyPage"; // MyPage를 올바르게 가져오기
+import TestPage from "./pages/TestPage";
+import ResultPage from "./pages/ResultPage";
+import WritingsPage from "./pages/PlusBtnPages/WritingsPage";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import PwFind from "./pages/PwFind";
@@ -22,15 +25,16 @@ const GlobalStyles = createGlobalStyle`
     width: 100%;
   }
   #root {
-    //임시 너비
     width: 80%;
-
-    //border: 1px solid gray;
+    
+    // border: 1px solid gray;
   }
   ::-webkit-scrollbar {
-    display:none;
+    display: none;
   }
 `;
+
+
 
 function App() {
   return (
@@ -38,6 +42,12 @@ function App() {
       <GlobalStyles />
       <Routes>
         <Route path="/" element={<Mainpage login={false} />}></Route>
+        <Route path="/myPage" element={<MyPage login={true}/>}></Route>
+        <Route path="/typeTest/:questionNumber" element={<TestPage />} />
+        <Route path="/typeTest/result/:resultId" element={<ResultPage/>} />  
+        <Route path="/pw-find" element={<PwFind />}></Route>
+        {/* <Route path="/myWritings" element={<WritingsPage/>}/> */}
+        
         <Route path="/sign-up" element={<SignUp login={false} />}></Route>
         <Route path="/login" element={<Login login={false} />}></Route>
         <Route path="/pw-find" element={<PwFind />}></Route>
