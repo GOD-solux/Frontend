@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+
 import Muntour from "../assets/logo.png";
+
 
 const Wrapper = styled.div`
   width: 100%;
@@ -11,6 +13,13 @@ const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-top: 10px;
+`;
+
+const Text = styled.div`
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: end;
 `;
 
 const Logo = styled.div`
@@ -25,6 +34,10 @@ const LogoImg = styled.img`
   font-weight: bold;
   height: 65px;
   cursor: pointer;
+`;
+
+const PageName = styled.div`
+  padding-bottom: 3px;
 `;
 
 const Navi = styled.div`
@@ -42,18 +55,23 @@ const NomalText = styled.div`
   cursor: pointer;
 `;
 
-function Header({ login }) {
-  let navigate = useNavigate();
+
+function Header({ login, text }) {
+  const navigate = useNavigate();
 
   return (
     <Wrapper>
-      <Logo
-        onClick={() => {
-          navigate("/");
-        }}
-      >
-        MUNTOUR
-      </Logo>
+      <Text>
+        <Logo
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          MUNTOUR
+        </Logo>
+        <PageName>{text}</PageName>
+      </Text>
+
       {login ? (
         <Navi>
           <NomalText>마이페이지</NomalText>
