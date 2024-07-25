@@ -10,9 +10,20 @@ const Wrapper = styled.div`
   align-items: center;
 `;
 
+const Text = styled.div`
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: end;
+`;
+
 const Logo = styled.div`
   font-size: 30px;
   font-weight: bold;
+`;
+
+const PageName = styled.div`
+  padding-bottom: 3px;
 `;
 
 const Navi = styled.div`
@@ -28,10 +39,13 @@ const NomalText = styled.div`
   cursor: pointer;
 `;
 
-function Header({ login }) {
+function Header({ login, text }) {
   return (
     <Wrapper>
-      <Logo>MUNTOUR</Logo>
+      <Text>
+        <Logo>MUNTOUR</Logo>
+        <PageName>{text}</PageName>
+      </Text>
       {login ? (
         <Navi>
           <NomalText>마이페이지</NomalText>
