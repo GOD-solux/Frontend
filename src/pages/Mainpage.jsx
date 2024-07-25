@@ -17,7 +17,6 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 22px;
-  height: 700px;
 `;
 
 const SearchBar = styled.form`
