@@ -1,9 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
-
 import Mainpage from "./pages/Mainpage";
-import Communitypage from "./pages/Communitypage";
+import MyPage from "./pages/MyPage"; // MyPage를 올바르게 가져오기
+import TestPage from "./pages/TestPage";
+import ResultPage from "./pages/ResultPage";
+import WritingsPage from "./pages/PlusBtnPages/WritingsPage";
 
 const GlobalStyles = createGlobalStyle`
   ${reset};
@@ -18,43 +20,33 @@ const GlobalStyles = createGlobalStyle`
     width: 100%;
   }
   #root {
-    //임시 너비
     width: 80%;
-
-    //border: 1px solid gray;
-    
+    // border: 1px solid gray;
   }
   ::-webkit-scrollbar {
-    display:none;
+    display: none;
   }
 `;
+
+
 
 function App() {
   return (
     <Router basename={process.env.PUBLIC_URL}>
       <GlobalStyles />
       <Routes>
-        <Route path="/" element={<Mainpage login={false} />}></Route>
-        <Route
-          path="/community"
-          element={<Communitypage category="전체" />}
-        ></Route>
-        <Route
-          path="/community/performance"
-          element={<Communitypage category="공연" />}
-        ></Route>
-        <Route
-          path="/community/exhibition"
-          element={<Communitypage category="전시" />}
-        ></Route>
-        <Route
-          path="/community/sport"
-          element={<Communitypage category="스포츠" />}
-        ></Route>
-        <Route
-          path="/community/book"
-          element={<Communitypage category="도서" />}
-        ></Route>
+        <Route 
+          path="/myPage"
+          element={<MyPage login={true}/>}>
+          </Route>
+          <Route path="/typeTest/:questionNumber" element={<TestPage />} />
+          <Route path="/typeTest/result/:resultId" element={<ResultPage/>} />
+          //비밀번호 변경 
+          {/* <Route 
+          path="/pw-find" element={<PwFind />}
+        ></Route> */}
+        {/* <Route
+          path="/myWritings" element={<WritingsPage/>}/> */}
       </Routes>
     </Router>
   );
