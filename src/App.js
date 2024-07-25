@@ -3,6 +3,9 @@ import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
 
 import Mainpage from "./pages/Mainpage";
+import SignUp from "./pages/SignUp";
+import Login from "./pages/Login";
+import PwFind from "./pages/PwFind";
 import Communitypage from "./pages/Communitypage";
 
 const GlobalStyles = createGlobalStyle`
@@ -22,18 +25,29 @@ const GlobalStyles = createGlobalStyle`
     width: 80%;
 
     //border: 1px solid gray;
-    
   }
   ::-webkit-scrollbar {
     display:none;
   }
 `;
 
+
 function App() {
   return (
     <Router basename={process.env.PUBLIC_URL}>
       <GlobalStyles />
       <Routes>
+        <Route 
+          path="/" element={<Mainpage login={false} />}
+        ></Route>
+        <Route 
+          path="/sign-up" element={<SignUp login={false} />}
+        ></Route>
+        <Route 
+          path="/login" element={<Login login={false} />}
+        ></Route>
+        <Route 
+          path="/pw-find" element={<PwFind />}
         <Route path="/" element={<Mainpage login={false} />}></Route>
         <Route
           path="/community"
