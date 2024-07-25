@@ -31,7 +31,7 @@ const Container = styled.div`
 function Culturelistpage({ category }) {
   return (
     <Wrapper>
-      <Header />
+      <Header text="문화 생활 더보기" />
       <CategoryHeader page="culturelist" category={category} />
       <Container>
         {/* 리스트 받아서 list % 3 === 2이면 NullItem 하나 넣기*/}
