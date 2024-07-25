@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const StyledBtn = styled.div`
-  background: ${props => props.backgroundColor}; /* 동적으로 배경색 설정 */
+  background: ${props => props.selected ? '#EFF5FF' : 'white'}; /* 동적으로 배경색 설정 */
   border-radius: 5px;
   border-width: 2px;
   border-style: solid;
@@ -19,17 +19,17 @@ const StyledBtn = styled.div`
   margin-right: 8px; /* 버튼 사이 간격 설정 */
 `;
 
-function TypeBtn({ children }) {
-  const [backgroundColor, setBackgroundColor] = useState('white');
+function TypeBtn({ onClick,selected,children }) {
+  // const [backgroundColor, setBackgroundColor] = useState('white');
 
-  const handleClick = () => {
-    setBackgroundColor(backgroundColor === 'white' ? '#EFF5FF' : 'white');
-  };
+  // const handleClick = () => {
+  //   setBackgroundColor(backgroundColor === 'white' ? '#EFF5FF' : 'white');
+  // };
 
   return (
     <StyledBtn
-      backgroundColor={backgroundColor}
-      onClick={handleClick}
+      selected={selected}
+      onClick={onClick}
     >
       {children}
     </StyledBtn>

@@ -7,6 +7,10 @@ import profileImage from "../assets/profile.png";
 import ProfileBtn from "../components/MyPage/ProfileBtn";
 import MyCulture from "../components/MyPage/MyCulture";
 import WritingList from "../components/MyPage/WritingList";
+import PlusBtn from "../components/MyPage/PlusBtn";
+
+
+import {useNavigate} from 'react-router-dom';
 
 
 const Wrapper = styled.div`
@@ -14,8 +18,8 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 50px;
-  height: 1000px;
+  // gap: 40px;
+  height: 800px;
 `;
 
 const ProfileWrapper = styled.div`
@@ -34,7 +38,7 @@ const CultureWrapper = styled.div`
   align-items: center;
   justify-content: center;
   height: 100px;
-  gap: 20px;
+  gap: 50px;
   flex-direction: row;
 `;
 
@@ -54,24 +58,64 @@ const ProfileImage = styled.img`
   border-radius: 50%;
 `;
 
-const WritingWrapper = styled.div`
+const WritingsWrapper = styled.div`
   width: 70%;
+  align-items: center;
+  justify-content: center; 
+  height: 70%;
+  flex-direction: row;
+
+  margin-top:50px;
+`;
+
+const WritingWrapper = styled.div`
+  width: 100%;
   align-items: center;
   justify-content: center;
   height: 70%;
-  margin-top: -70px;
+  // margin-top: -70px;
   flex-direction: row;
 `;
 
 const Hr = styled.hr`
-  margin-top: -90px;
+  // margin-top: -90px;
   width: 70%;
   border: 0;
   height: 0.5px;
   background-color: #dcdcdc;
+  margin:20px;
+`;
+
+const HeaderWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  // margin-top:40px;
+`;
+
+const H1 = styled.h1`
+  font-weight: bold;
+  font-size: 14px;
+  // margin-bottom: 7px;
 `;
 
 function MyPage() {
+
+  const navigate = useNavigate(); 
+
+  const handleWritings = () => {
+    console.log("writings");
+    navigate(`/myWritings`);
+  };
+
+  const handleLikes = () => {
+    console.log("likes");
+    navigate(`/myLikes`);
+  };
+
+
+
   return (
     <Wrapper>
       <MyPageHeader/>
@@ -86,10 +130,22 @@ function MyPage() {
       <CultureWrapper>
         <MyCulture />
       </CultureWrapper>
-      <WritingWrapper>
-        <WritingList>내가 쓴 글 목록</WritingList>
-        <WritingList>공감한 글 목록</WritingList>
-      </WritingWrapper>
+      <WritingsWrapper>
+        <WritingWrapper>
+          <HeaderWrapper>
+            <H1>내가 쓴 글 목록</H1>
+            <PlusBtn onClick={handleWritings}>더 보기</PlusBtn>
+          </HeaderWrapper>
+          <WritingList/>
+        </WritingWrapper>
+        <WritingWrapper>
+          <HeaderWrapper>
+            <H1>공감한 글 목록</H1>
+            <PlusBtn onClick={handleLikes}>더 보기</PlusBtn>
+          </HeaderWrapper>
+          <WritingList/>
+        </WritingWrapper>
+      </WritingsWrapper>
     </Wrapper>
   );
 }

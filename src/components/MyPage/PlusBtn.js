@@ -18,10 +18,14 @@ const StyledBtn = styled.div`
     justify-content: center;
 `;
 
-// 프로필 수정
-function PlusBtn({children}) {
+// 더보기 버튼
+function PlusBtn({children,onClick}) {
     return (
-        <StyledBtn>{children}</StyledBtn>
+        <StyledBtn
+            onClick={onClick}
+        >
+            {children}
+        </StyledBtn>
     );
 }
 
