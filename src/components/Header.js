@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 import Muntour from "../assets/logo.png"
 
 const Wrapper = styled.div`
-  width: 92%;
-  height: 60px;
-  
+  width: 100%;
+  height: 100px;
+  //border-bottom: 1px solid gray;
 
   display: flex;
   justify-content: space-between;
@@ -39,7 +39,9 @@ const Navi = styled.div`
   }
 `;
 
-const NomalText = styled.div``;
+const NomalText = styled.div`
+  cursor: pointer;
+`;
 
 function Header({ login }) {
 

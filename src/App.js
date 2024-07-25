@@ -6,6 +6,7 @@ import Mainpage from "./pages/Mainpage";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import PwFind from "./pages/PwFind";
+import Communitypage from "./pages/Communitypage";
 
 const GlobalStyles = createGlobalStyle`
   ${reset};
@@ -23,7 +24,7 @@ const GlobalStyles = createGlobalStyle`
     //임시 너비
     width: 80%;
 
-    
+    //border: 1px solid gray;
   }
   ::-webkit-scrollbar {
     display:none;
@@ -47,6 +48,26 @@ function App() {
         ></Route>
         <Route 
           path="/pw-find" element={<PwFind />}
+        <Route path="/" element={<Mainpage login={false} />}></Route>
+        <Route
+          path="/community"
+          element={<Communitypage category="전체" />}
+        ></Route>
+        <Route
+          path="/community/performance"
+          element={<Communitypage category="공연" />}
+        ></Route>
+        <Route
+          path="/community/exhibition"
+          element={<Communitypage category="전시" />}
+        ></Route>
+        <Route
+          path="/community/sport"
+          element={<Communitypage category="스포츠" />}
+        ></Route>
+        <Route
+          path="/community/book"
+          element={<Communitypage category="도서" />}
         ></Route>
       </Routes>
     </Router>
