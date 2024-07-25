@@ -3,7 +3,7 @@ import styled from "styled-components";
 const StyledBtn = styled.div`
     
     width: 7vw;
-    height: 6vh;
+    height: 20vh;
 
     font-weight: 600;
     font-size: 2vh; 

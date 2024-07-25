@@ -1,3 +1,6 @@
+import questionImage1 from "../../assets/question1.png";
+// import questionImage2 from "../../assets/questionImage2.png";
+
 
 export const questions = {
   1: "Q. 사색보단 산책이 좋다.",
@@ -35,3 +38,17 @@ export const questionMapping = {
   8: { 'yes': 'B', 'no': 9 }, // 순환 예시
   9: { 'yes': 'C', 'no': 'B' }// 순환 예시
 };
+
+export const imgs={
+  1:questionImage1,
+  // 2:questionImage2,
+  // 3:questionImage3,
+  // 4:questionImage4,
+  // 5:questionImage5,
+  // 6:questionImage6,
+  // 7:questionImage7,
+  // 8:questionImage8,
+  // 9:questionImage9
+};
+
+

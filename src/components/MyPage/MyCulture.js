@@ -7,6 +7,7 @@ const Wrapper = styled.div`
   height: 25vh;
   display: flex;
   flex-direction: column;
+  margin-top:20px;
   gap: 5px;
 `;
 

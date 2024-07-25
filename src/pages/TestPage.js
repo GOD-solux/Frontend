@@ -1,42 +1,59 @@
 import styled from "styled-components";
 import { useNavigate, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { questions, questionMapping } from '../components/TestPage/questions';
+import { questions, questionMapping,imgs } from '../components/TestPage/questions';
 
-import TestHeader from "../components/TestPage/TestHeader";
-import Progress from "../components/TestPage/Progress";
 import Question from "../components/TestPage/Question";
 import AnswerBtn from "../components/TestPage/AnswerBtn";
 import OrderBtn from "../components/TestPage/OrderBtn";
+import Header from "../components/Header";
+
 
 const Wrapper = styled.div`
   width: 100%;
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 30px;
+  // gap: 20px;
+ 
+
   height: 700px;
 `;
 
 const Container = styled.div`
-  width: 100%;
-  height: 90%;
-  margin-top: -30px;
+   width: 100%;
+  height:90%;
   background-color: #F3F3F3;
   border-radius: 10px;
-  padding: 10px;
+
+
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  align-items:center;
+  // gap: 10px;
+
 `;
 
 const ButtonWrapper = styled.div`
   width: 100%;
-  height: 13vh;
+  height: 10vh;
   display: flex;
-  align-items: center;
+  // align-items: center;
   justify-content: center;
+  // padding:10px;
+  // margin-top:50px;
   gap: 35px;
+`;
+
+const Picture=styled.img`
+    display: flex;
+    justify-content: center;
+    width: 30%;
+    height: 20%;
+    margin-bottom:50px;
+    // margin-top: -65px;
+    // border-radius: 50%;
 `;
 
 function TestPage() {
@@ -69,10 +86,10 @@ function TestPage() {
 
   return (
     <Wrapper>
-      <TestHeader />
+      <Header text="유형테스트"/>
       <Container>
-        <Progress />
         <Question>{questions[questionNumber]}</Question>
+        <Picture src={imgs[questionNumber]} alt="pic" />
         <ButtonWrapper>
           <AnswerBtn
             onClick={() => handleAnswerClick('yes')}
