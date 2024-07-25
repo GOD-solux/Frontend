@@ -28,12 +28,13 @@ const Container = styled.div`
   margin-top: 30px;
 `;
 
-function Culturelistpage() {
+function Culturelistpage({ category }) {
   return (
     <Wrapper>
       <Header />
-      <CategoryHeader />
+      <CategoryHeader page="culturelist" category={category} />
       <Container>
+        {/* 리스트 받아서 list % 3 === 2이면 NullItem 하나 넣기*/}
         <CultureItem />
         <CultureItem />
         <CultureItem />

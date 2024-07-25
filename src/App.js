@@ -56,7 +56,26 @@ function App() {
           path="/community/book"
           element={<Communitypage category="도서" />}
         ></Route>
-        <Route path="/culturelist" element={<Culturelistpage />}></Route>
+        <Route
+          path="/culturelist"
+          element={<Culturelistpage category="전체" />}
+        ></Route>
+        <Route
+          path="/culturelist/performance"
+          element={<Culturelistpage category="공연" />}
+        ></Route>
+        <Route
+          path="/culturelist/exhibition"
+          element={<Culturelistpage category="전시" />}
+        ></Route>
+        <Route
+          path="/culturelist/sport"
+          element={<Culturelistpage page="culturelist" category="스포츠" />}
+        ></Route>
+        <Route
+          path="/culturelist/book"
+          element={<Culturelistpage page="culturelist" category="도서" />}
+        ></Route>
       </Routes>
     </Router>
   );

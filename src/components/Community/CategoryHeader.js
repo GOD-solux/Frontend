@@ -28,7 +28,7 @@ const categoryList = [
   { name: "도서", path: "book" },
 ];
 
-function CategoryHeader({ category }) {
+function CategoryHeader({ page, category }) {
   const navigate = useNavigate();
 
   return (
@@ -37,16 +37,13 @@ function CategoryHeader({ category }) {
         v.name === category ? (
           <CategoryText
             key={i}
-            onClick={() => navigate(`/community/${v.path}`)}
+            onClick={() => navigate(`/${page}/${v.path}`)}
             style={{ fontWeight: "bold", borderBottom: "1px solid black" }}
           >
             {v.name}
           </CategoryText>
         ) : (
-          <CategoryText
-            key={i}
-            onClick={() => navigate(`/community/${v.path}`)}
-          >
+          <CategoryText key={i} onClick={() => navigate(`/${page}/${v.path}`)}>
             {v.name}
           </CategoryText>
         )
