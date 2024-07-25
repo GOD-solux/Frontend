@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -40,10 +41,18 @@ const NomalText = styled.div`
 `;
 
 function Header({ login, text }) {
+  const navigate = useNavigate();
+
   return (
     <Wrapper>
       <Text>
-        <Logo>MUNTOUR</Logo>
+        <Logo
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          MUNTOUR
+        </Logo>
         <PageName>{text}</PageName>
       </Text>
       {login ? (
