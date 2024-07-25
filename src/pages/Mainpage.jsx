@@ -17,13 +17,12 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 22px;
-  height: 700px;
 `;
 
 const SearchBar = styled.form`
   border: 2px solid #ACACAC; 
   border-radius: 50px;
-  width: 93%;
+  width: 90%;
   height: 45px;
   font-size: 20px;
   font-weight: 500;
@@ -192,7 +191,7 @@ function Mainpage(props) {
       <CardContainer1>
         <UCard 
           bcolor="#85A1E8" tcolor="white" nav="/community" title="문화 커뮤니티" bimg={Community} />
-        <UCard bcolor="#E0E9FF" tcolor="black" nav="/typeTest/ing" title="문화 유형 테스트" bimg={Typetest} />
+        <UCard bcolor="#E0E9FF" tcolor="black" nav="/typeTest/1" title="문화 유형 테스트" bimg={Typetest} />
       </CardContainer1>
       
       <Line>
