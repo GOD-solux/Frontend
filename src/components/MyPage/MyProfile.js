@@ -3,6 +3,9 @@ import styled from 'styled-components';
 import TypeBtn from './TypeBtn.js'; // TypeBtn 컴포넌트 import
 import ChangeBtn from './ChangeBtn';
 
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 const Wrapper = styled.div`
   width: 85vw;
   height: 25vh;
@@ -52,6 +55,27 @@ const ButtonWrapper = styled.div`
 `;
 
 function MyProfile() {
+  const [selectedTypes,setSelectedTypes]=useState([]);
+
+  const handleTypeClick=(type)=>{
+    if(selectedTypes.includes(type)){
+       // filter -> selectedTypes 배열에서 type과 일치하지 않는 항목들만 남김
+      setSelectedTypes(selectedTypes.filter(selectedType=>selectedType!==type));
+    }else{
+      // 스프레드 연산자(...) -> selectedTypes 배열의 모든 항목과 새로운 type을 포함하는 새로운 배열을 만듦
+      setSelectedTypes([...selectedTypes,type]);
+    }
+  };
+
+  const handleFixClick = () => {
+    console.log(selectedTypes);
+  };
+
+  //비밀번호 변경
+  // const handlePWclick=()=>{
+  //     navigate(`/pw-find`);
+  // };
+
   return (
     <Wrapper>
       <FieldWrapper>
@@ -61,7 +85,9 @@ function MyProfile() {
       <FieldWrapper>
         <Label>비밀번호</Label>
         <LongBox></LongBox>
-          <ChangeBtn>비밀번호 변경</ChangeBtn>
+          <ChangeBtn
+            // onClick={handlePWclick} //비밀번호 변경
+          >비밀번호 변경</ChangeBtn>
       </FieldWrapper>
       <FieldWrapper>
         <Label>이름(닉네임)</Label>
@@ -70,12 +96,26 @@ function MyProfile() {
       <FieldWrapper>
         <Label>관심 분야</Label>
         <ButtonWrapper>
-          <TypeBtn>공연</TypeBtn>
-          <TypeBtn>전시</TypeBtn>
-          <TypeBtn>스포츠</TypeBtn>
-          <TypeBtn>도서</TypeBtn>
+          <TypeBtn 
+            onClick={()=>handleTypeClick('공연')}
+            selected={selectedTypes.includes('공연')}
+          >공연</TypeBtn>
+          <TypeBtn
+            onClick={()=>handleTypeClick('전시')}
+            selected={selectedTypes.includes('전시')}
+          >전시</TypeBtn>
+          <TypeBtn
+            onClick={()=>handleTypeClick('스포츠')}
+            selected={selectedTypes.includes('스포츠')}
+          >스포츠</TypeBtn>
+          <TypeBtn
+            onClick={()=>handleTypeClick('도서')}
+            selected={selectedTypes.includes('도서')}
+          >도서</TypeBtn>
         </ButtonWrapper>
-        <ChangeBtn>수정</ChangeBtn>
+        <ChangeBtn
+          onClick={handleFixClick}
+        >수정</ChangeBtn>
       </FieldWrapper>
     </Wrapper>
   );
