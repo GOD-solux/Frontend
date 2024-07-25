@@ -55,7 +55,7 @@ const HashTagList = ["맛집", "동행", "비추", "추천", "후기"];
 function Communitypage({ category }) {
   return (
     <Wrapper>
-      <Header />
+      <Header type="커뮤니티" />
       <CategoryHeader page="community" category={category} />
       <Container>
         <HashTagContainer>

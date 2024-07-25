@@ -3,10 +3,9 @@ import { useNavigate } from "react-router-dom";
 
 import Muntour from "../assets/logo.png";
 
-
 const Wrapper = styled.div`
   width: 100%;
-  height: 100px;
+  height: 60px;
   //border-bottom: 1px solid gray;
 
   display: flex;
@@ -54,7 +53,6 @@ const Navi = styled.div`
 const NomalText = styled.div`
   cursor: pointer;
 `;
-
 
 function Header({ login, text }) {
   const navigate = useNavigate();
