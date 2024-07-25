@@ -200,19 +200,19 @@ function Mainpage(props) {
         <Divider />
       </Line>
       <CardContainer2>
-        <MCard nav="/community/:performance"
+        <MCard nav="/culturelist/performance"
           title="공연"
           bimg={Performance}
         />
-        <MCard nav="/community/:exhibition" 
+        <MCard nav="/culturelist/exhibition" 
           title="전시"
           bimg={Exhibit}
         />
-        <MCard nav="/community/:sport" 
+        <MCard nav="/culturelist/sport" 
           title="스포츠"
           bimg={Sport}
         />
-        <MCard nav="/community/:book" 
+        <MCard nav="/culturelist/book" 
           title="도서"
           bimg={Book}
         />
