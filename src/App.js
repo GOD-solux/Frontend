@@ -5,7 +5,7 @@ import Mainpage from "./pages/Mainpage";
 import MyPage from "./pages/MyPage"; // MyPage를 올바르게 가져오기
 import TestPage from "./pages/TestPage";
 import ResultPage from "./pages/ResultPage";
-import WritingsPage from "./pages/PlusBtnPages/WritingsPage";
+//import WritingsPage from "./pages/PlusBtnPages/WritingsPage";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import PwFind from "./pages/PwFind";
@@ -36,20 +36,18 @@ const GlobalStyles = createGlobalStyle`
   }
 `;
 
-
-
 function App() {
   return (
     <Router basename={process.env.PUBLIC_URL}>
       <GlobalStyles />
       <Routes>
         <Route path="/" element={<Mainpage login={false} />}></Route>
-        <Route path="/myPage" element={<MyPage login={true}/>}></Route>
+        <Route path="/myPage" element={<MyPage login={true} />}></Route>
         <Route path="/typeTest/:questionNumber" element={<TestPage />} />
-        <Route path="/typeTest/result/:resultId" element={<ResultPage/>} />  
+        <Route path="/typeTest/result/:resultId" element={<ResultPage />} />
         <Route path="/pw-find" element={<PwFind />}></Route>
         {/* <Route path="/myWritings" element={<WritingsPage/>}/> */}
-        
+
         <Route path="/sign-up" element={<SignUp login={false} />}></Route>
         <Route path="/login" element={<Login login={false} />}></Route>
         <Route path="/pw-find" element={<PwFind />}></Route>
@@ -93,14 +91,8 @@ function App() {
           path="/culturelist/book"
           element={<Culturelistpage page="culturelist" category="도서" />}
         ></Route>
-        <Route
-          path="/new-post"
-          element={<NewPostPage/>}
-        ></Route>
-        <Route
-          path="/view-post"
-          element={<ViewPostPage/>}
-        ></Route>
+        <Route path="/new-post" element={<NewPostPage />}></Route>
+        <Route path="/view-post" element={<ViewPostPage />}></Route>
       </Routes>
     </Router>
   );
