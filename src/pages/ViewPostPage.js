@@ -4,6 +4,7 @@ import Header from "../components/Header";
 import CategoryHeader from "../components/Community/CategoryHeader";
 import ViewPostItem from "../components/Post/ViewPostItem";
 import CommentItem from "../components/Post/CommentItem";
+import Idcheck from "../assets/idcheck.png"
 
 const Wrapper = styled.div`
     width: 100%;
