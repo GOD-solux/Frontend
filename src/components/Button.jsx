@@ -5,7 +5,7 @@ const StyleButton = styled.div`
     font-size: 1em;
     font-weight: 700;
     color: white;
-    //border-radius: 50px;
+    border-radius: 50px;
     border: 0px;
     cursor: pointer;
     background-color: #85A1E8;

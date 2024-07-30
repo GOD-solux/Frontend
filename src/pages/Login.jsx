@@ -33,7 +33,7 @@ const Text = styled.div`
 const LoginButton = styled(Button)`
   &&& {
     padding: 13px 70px;
-    margin: 15px 0px 20px 0px;
+    margin: 0px 0px 20px 0px;
     font: bold 20px;
   }
 `;
@@ -44,9 +44,6 @@ const Divider = styled.div`
   margin: 5px 9px 0px 0px;
   background-color: #ccc;
 `;
-
-
-
 
 const IdCheck = styled.input`
   appearance: none;
@@ -72,7 +69,7 @@ const CheckDiv = styled.div`
   align-items: center;
   font-size: 16px;
   color: #333;
-  margin: 15px 230px 5px 0px;
+  margin: 0px 230px 5px 0px;
 `;
 
 const Find = styled.div`

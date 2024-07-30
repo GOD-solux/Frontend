@@ -62,10 +62,9 @@ const Divider = styled.div`
 
 const NewButton = styled(Button)`
   &&& {
-    padding: ${({ sign }) => (sign ? '13px 60px' : '13px 13px')};
-    font-size: ${({ sign }) => (sign ? '20px' : '11px')};
-    border-radius: ${({ sign }) => (sign ? '30px' : '3px')};
-    white-space: nowrap;
+    padding: 13px 60px;
+    font-size: 20px;
+    border-radius: '30px';
   }
 `;
 
@@ -114,12 +113,6 @@ function SignUp(props) {
             <Text title>회원가입</Text>
             <Idarea>
               <TextInput type="text" img={Id} placeholder="아이디" withButton={true}/>
-              {/* <NewButton
-                overlap
-                title="중복확인"
-                onClick={onClick}
-                disabled={disabled}
-              /> */}
             </Idarea>
             <TextInput type="password" img={Pw} placeholder="비밀번호" maxLength={12}/>
             <TextInput type="password" img={CheckPw} placeholder="비밀번호 확인" maxLength={12}/>
@@ -145,7 +138,6 @@ function SignUp(props) {
         </ButtonGroup>
 
             <NewButton
-              sign
               title="회원가입"
               onClick={()=>{navigate("/login")}}
               disabled={disabled}
