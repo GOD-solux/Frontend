@@ -1,5 +1,5 @@
 import questionImage1 from "../../assets/question1.png";
-// import questionImage2 from "../../assets/questionImage2.png";
+// import questionImage2 from "../../assets/question2.png";
 
 
 export const questions = {

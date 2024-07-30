@@ -15,7 +15,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 800px;
+
 `;
 
 const ProfileWrapper = styled.div`
@@ -35,6 +35,7 @@ const CultureWrapper = styled.div`
   height: 100px;
   gap: 50px;
   flex-direction: row;
+  margin-top:40px;
 `;
 
 const ProfileImageWrapper = styled.div`
@@ -56,7 +57,7 @@ const WritingsWrapper = styled.div`
   width: 70%;
   align-items: center;
   justify-content: center; 
-  height: 70%;
+  height: 70vh;
   flex-direction: row;
   margin-top: 50px;
 `;
@@ -75,6 +76,7 @@ const Hr = styled.hr`
   height: 0.5px;
   background-color: #dcdcdc;
   margin: 20px;
+
 `;
 
 const HeaderWrapper = styled.div`
