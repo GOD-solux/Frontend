@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import CategoryHeader from "../components/Community/CategoryHeader";
 import PostItem from "../components/Community/PostItem";
 import WriteBtnIcon from "../components/Community/WriteBtnIcon";
+import Footer from "../components/Footer";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -15,7 +16,6 @@ const Wrapper = styled.div`
   position: relative;
 
   //페이지넘버 설정을 위한 임시 padding-bottom
-  padding-bottom: 100px;
 `;
 
 const Container = styled.div`
@@ -70,6 +70,7 @@ function Communitypage({ category }) {
         <PostItem />
       </Container>
       <WriteBtnIcon />
+      <Footer />
     </Wrapper>
   );
 }

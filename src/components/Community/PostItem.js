@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import LikeBtnIcon from "./LikeBtnIcon";
+import { useNavigate } from "react-router-dom";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -59,8 +60,10 @@ const LikeBtn = styled.button`
 `;
 
 function PostItem() {
+  const navigate = useNavigate();
+
   return (
-    <Wrapper>
+    <Wrapper onClick={() => navigate("/view-post")}>
       <ColSection>
         <RowSection>
           <ProfileImage />

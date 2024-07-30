@@ -8,14 +8,11 @@ const Wrapper = styled.footer`
   font-size: 14px;
   color: #333;
   border-top: 1px solid #333;
+  margin-top: 60px;
 `;
 
 function Footer() {
-  return (
-    <Wrapper>
-      © God7.
-    </Wrapper>
-  );
+  return <Wrapper>© God7.</Wrapper>;
 }
 
 export default Footer;
