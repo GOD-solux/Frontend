@@ -5,6 +5,7 @@ import CategoryHeader from "../components/Community/CategoryHeader";
 import ViewPostItem from "../components/Post/ViewPostItem";
 import CommentItem from "../components/Post/CommentItem";
 import Idcheck from "../assets/idcheck.png"
+import Footer from "../components/Footer";
 
 const Wrapper = styled.div`
     width: 100%;
@@ -62,6 +63,7 @@ const SetSecret = styled.div`
     align-items: center;
     font-size: 15px;
     cursor: pointer;
+    margin-bottom: 40px;
 `;
 
 const Checkbox = styled.input.attrs({ type: 'checkbox' })`
@@ -124,6 +126,7 @@ function ViewPostPage({ category }) {
                 />
                 비밀댓글
             </SetSecret>
+            <Footer></Footer>
         </Wrapper>
     );
 }
