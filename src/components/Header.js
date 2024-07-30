@@ -43,7 +43,7 @@ const NomalText = styled.div``;
 
 function Header({ login }) {
 
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   
   return (
     <Wrapper>

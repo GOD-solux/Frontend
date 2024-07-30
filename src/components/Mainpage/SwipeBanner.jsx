@@ -19,7 +19,7 @@ const StyledSwiper = styled(SwiperComponent)`
   .swiper-button-next {
     width: 8px; 
     height: 8px;
-    color: black; 
+    color: black;
   }
 
   .swiper-pagination-bullet {
