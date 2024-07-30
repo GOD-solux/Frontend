@@ -30,7 +30,7 @@ const ColorBar=styled.div`
 `;
 
 const Regular=styled.div`
-    width:90px;
+    width:150px;
     height:50px;
 
     font-weight:200;
@@ -47,7 +47,7 @@ function Progress(){
         <Wrapper>
             <Bar>
                 <ColorBar></ColorBar>
-                <Regular>20%</Regular>
+                <Regular>~test in progress~</Regular>
             </Bar>
         </Wrapper>
     )

@@ -1,24 +1,20 @@
 // MyPage.js
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import MyPageHeader from "../components/MyPage/MyPageHeader";
+import Header from "../components/Header";
 import MyProfile from "../components/MyPage/MyProfile";
 import profileImage from "../assets/profile.png";
 import ProfileBtn from "../components/MyPage/ProfileBtn";
 import MyCulture from "../components/MyPage/MyCulture";
 import WritingList from "../components/MyPage/WritingList";
 import PlusBtn from "../components/MyPage/PlusBtn";
-
-
-import {useNavigate} from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
 
 const Wrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  // gap: 40px;
   height: 800px;
 `;
 
@@ -26,7 +22,6 @@ const ProfileWrapper = styled.div`
   width: 70%;
   display: flex;
   align-items: center;
-  justify-content: center;
   height: 185px;
   gap: 20px;
   flex-direction: row;
@@ -54,7 +49,6 @@ const ProfileImage = styled.img`
   justify-content: center;
   width: 85px;
   height: 90px;
-  margin-top: -65px;
   border-radius: 50%;
 `;
 
@@ -64,8 +58,7 @@ const WritingsWrapper = styled.div`
   justify-content: center; 
   height: 70%;
   flex-direction: row;
-
-  margin-top:50px;
+  margin-top: 50px;
 `;
 
 const WritingWrapper = styled.div`
@@ -73,56 +66,64 @@ const WritingWrapper = styled.div`
   align-items: center;
   justify-content: center;
   height: 70%;
-  // margin-top: -70px;
   flex-direction: row;
 `;
 
 const Hr = styled.hr`
-  // margin-top: -90px;
   width: 70%;
   border: 0;
   height: 0.5px;
   background-color: #dcdcdc;
-  margin:20px;
+  margin: 20px;
 `;
 
 const HeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  // margin-top:40px;
 `;
 
 const H1 = styled.h1`
   font-weight: bold;
   font-size: 14px;
-  // margin-bottom: 7px;
 `;
 
 function MyPage() {
-
   const navigate = useNavigate(); 
+  const [image, setImage] = useState(profileImage);
+
+  //프로필 사진 수정
+  const handleProfileClick = (e) => {
+    const file = e.target.files[0]; //사용자가 선택한 첫 번째 파일을 가져옴.
+    if (file) {
+      const imageUrl = URL.createObjectURL(file);//파일의 URL 생성.
+      setImage(imageUrl);//image 상태 업데이트.
+    }
+  };
 
   const handleWritings = () => {
-    console.log("writings");
     navigate(`/myWritings`);
   };
 
   const handleLikes = () => {
-    console.log("likes");
     navigate(`/myLikes`);
   };
 
-
-
   return (
     <Wrapper>
-      <MyPageHeader/>
+      <Header text="마이페이지" />
       <ProfileWrapper>
         <ProfileImageWrapper>
-          <ProfileImage className="profile-image" src={profileImage} alt="Profile" />
-          <ProfileBtn>프로필 수정</ProfileBtn>
+          <ProfileImage className="profile-image" src={image} alt="Profile" />
+          <label htmlFor="profile-input"> 
+            <ProfileBtn>프로필 수정</ProfileBtn>
+          </label>
+          <input
+            id="profile-input"
+            type="file"
+            style={{ display: 'none' }}
+            onChange={handleProfileClick}
+          />
         </ProfileImageWrapper>
         <MyProfile />
       </ProfileWrapper>
@@ -136,14 +137,14 @@ function MyPage() {
             <H1>내가 쓴 글 목록</H1>
             <PlusBtn onClick={handleWritings}>더 보기</PlusBtn>
           </HeaderWrapper>
-          <WritingList/>
+          <WritingList />
         </WritingWrapper>
         <WritingWrapper>
           <HeaderWrapper>
             <H1>공감한 글 목록</H1>
             <PlusBtn onClick={handleLikes}>더 보기</PlusBtn>
           </HeaderWrapper>
-          <WritingList/>
+          <WritingList />
         </WritingWrapper>
       </WritingsWrapper>
     </Wrapper>

@@ -18,6 +18,7 @@ export const activity = {
     A: [
         "전시",//0
         "도서"//1
+  
     ],
 
     B:[
@@ -31,6 +32,21 @@ export const activity = {
     ],
 
 };
+
+export const links={
+    A:[
+        "/culturelist/exhibition",
+        "/culturelist/book"
+    ],
+    B:[
+        "/culturelist/exhibition",
+        "/culturelist/performance"
+    ],
+    C:[
+        "/culturelist/sport",
+        "/culturelist/book"
+    ]
+}
 
 export const images={
     A:resultImageA,

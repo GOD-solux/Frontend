@@ -8,10 +8,12 @@ import { useNavigate } from 'react-router-dom';
 
 const Wrapper = styled.div`
   width: 85vw;
-  height: 25vh;
+  height: 20vh;
+
   display: flex;
   flex-direction: column;
   gap: 5px; /* 항목 사이의 간격 */
+  margin-top:50px;
 `;
 
 const FieldWrapper = styled.div`

@@ -14,7 +14,7 @@ const StyledBtn = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 5%;
+  // margin-top: 5%;
   transition: background 0.3s;
 `;
 

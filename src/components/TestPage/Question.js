@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import questionImage from "../../assets/question1.png";
+import { useNavigate, useParams } from 'react-router-dom';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -7,7 +8,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 46px;
+  gap: 30px;
 
   height: 30vh;
 `;
@@ -18,7 +19,7 @@ const Quest=styled.div`
     display:flex;
     flex-direction:column;
     align-items:center;
-    margin-top:5%;
+    margin-top:10%;
 
     font-size:20px;
     font-weight:300;
@@ -34,10 +35,13 @@ const Picture=styled.img`
 `;
 
 function Question({children}){
+
+    const { questionNumber } = useParams();
+
     return(
         <Wrapper>
            <Quest>{children}</Quest>
-           <Picture src={questionImage} alt="NO.1" />
+           {/* <Picture src={questionImage} alt="pic" /> */}
         </Wrapper>
     )
 
