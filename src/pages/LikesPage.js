@@ -40,10 +40,10 @@ const Container = styled.div`
   margin-top: 30px;
 `;
 
-function WritingsPage() {
+function LikesPage() {
   return (
     <Wrapper>
-      <Header text="내가 작성한 글" />
+      <Header text="공감한 글 목록" />
      <Container>
       <WritingBox>게시글 1</WritingBox>
       <WritingBox>게시글 2</WritingBox>
@@ -57,4 +57,4 @@ function WritingsPage() {
   );
 }
 
-export default WritingsPage;
+export default LikesPage;

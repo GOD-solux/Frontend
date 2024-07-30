@@ -5,7 +5,7 @@ import Mainpage from "./pages/Mainpage";
 import MyPage from "./pages/MyPage"; // MyPage를 올바르게 가져오기
 import TestPage from "./pages/TestPage";
 import ResultPage from "./pages/ResultPage";
-//import WritingsPage from "./pages/PlusBtnPages/WritingsPage";
+import WritingsPage from "./pages/WritingsPage";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import PwFind from "./pages/PwFind";
@@ -13,6 +13,7 @@ import Communitypage from "./pages/Communitypage";
 import Culturelistpage from "./pages/Culturelistpage";
 import NewPostPage from "./pages/NewPostPage";
 import ViewPostPage from "./pages/ViewPostPage";
+import LikesPage from "./pages/LikesPage";
 
 const GlobalStyles = createGlobalStyle`
   ${reset};
@@ -46,8 +47,8 @@ function App() {
         <Route path="/typeTest/:questionNumber" element={<TestPage />} />
         <Route path="/typeTest/result/:resultId" element={<ResultPage />} />
         <Route path="/pw-find" element={<PwFind />}></Route>
-        {/* <Route path="/myWritings" element={<WritingsPage/>}/> */}
-
+        <Route path="/myWritings" element={<WritingsPage/>}/>
+        <Route path="/myLikes" element={<LikesPage/>}/>
         <Route path="/sign-up" element={<SignUp login={false} />}></Route>
         <Route path="/login" element={<Login login={false} />}></Route>
         <Route path="/pw-find" element={<PwFind />}></Route>
