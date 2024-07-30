@@ -13,7 +13,7 @@ const StyleBox = styled.div`
     border: 3px solid #85A1E8;
     border-radius : 7px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-
+    gap: 15px;
 `;
 
 function Box(props){

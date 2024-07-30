@@ -7,6 +7,7 @@ import Header from "../components/Header";
 import Id from "../assets/id.png";
 import Pw from "../assets/pw.png";
 import CheckPw from "../assets/check.png";
+import TextInput from '../components/TextInput';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -35,7 +36,6 @@ const Idarea = styled.label`
   width: 350px;
   height: 50px;
   position: relative;
-  margin: 7px 20px;
 `;
 
 
@@ -43,7 +43,7 @@ const Textarea = styled.input`
     font-size: 16px; 
     line-height: 20px;
     border: none;
-    border-radius: 3px;
+    border-radius: 10px;
     margin: 5px 20px;
     padding: 10px;
     resize: none;
@@ -51,23 +51,13 @@ const Textarea = styled.input`
     width: 350px; 
     height: 40px;
     outline: none;
-      
-    &::placeholder {
-      font-size: 13px; 
-      color: #9E9E9E;
-      background: url(${props => props.img || Id}) no-repeat left center; 
-      background-size: contain; // 이미지 크기 조정
-      padding-left: 30px; // 이미지와 텍스트 사이 여백
-      line-height: 1.5;  //텍스트와 이미지 세로 정렬
-    }
-
 `;
 
 const Divider = styled.div`
   width: 350px;
   height: 1px;
   background-color: #CCC;
-  margin: 20px 0;
+  margin: 10px 0;
 `;
 
 const NewButton = styled(Button)`
@@ -93,9 +83,9 @@ const InterestButton = styled(Button)`
     color: black;
     font-size: 14px;
     font-weight: bold;
+    margin: 0px;
     padding: 8px 15px;
     border-radius: 7px;
-
     &:hover {
       background-color: #85A1E8;
       color: white;
@@ -106,7 +96,7 @@ const InterestButton = styled(Button)`
 
 function SignUp(props) {
 
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const { title, onClick, disabled, className } = props;
   
@@ -123,16 +113,16 @@ function SignUp(props) {
         <Box>
             <Text title>회원가입</Text>
             <Idarea>
-              <Textarea type="text" img={Id} placeholder="아이디"/>
-              <NewButton
+              <TextInput type="text" img={Id} placeholder="아이디" withButton={true}/>
+              {/* <NewButton
                 overlap
                 title="중복확인"
                 onClick={onClick}
                 disabled={disabled}
-              />
+              /> */}
             </Idarea>
-            <Textarea type="password" img={Pw} placeholder="비밀번호" maxLength={12}/>
-            <Textarea type="password" img={CheckPw} placeholder="비밀번호 확인" maxLength={12}/>
+            <TextInput type="password" img={Pw} placeholder="비밀번호" maxLength={12}/>
+            <TextInput type="password" img={CheckPw} placeholder="비밀번호 확인" maxLength={12}/>
 
             <Divider />
 
