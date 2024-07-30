@@ -8,6 +8,7 @@ import Header from "../components/Header";
 import Id from "../assets/id.png";
 import Pw from "../assets/pw.png";
 import CheckPw from "../assets/check.png";
+import TextInput from '../components/TextInput';
 
 const ModalComponent = styled.div`
   position: fixed;
@@ -66,14 +67,13 @@ const Idarea = styled.label`
   width: 350px;
   height: 50px;
   position: relative;
-  margin: 7px 20px;
 `;
 
 const Textarea = styled.input`
     font-size: 16px; 
     line-height: 20px;
     border: none;
-    border-radius: 3px;
+    border-radius: 10px;
     margin: 5px 20px;
     padding: 10px;
     resize: none;
@@ -81,29 +81,20 @@ const Textarea = styled.input`
     width: 350px; 
     height: 40px;
     outline: none;
-    &::placeholder {
-      font-size: 13px; 
-      color: #9E9E9E;
-      background: url(${props => props.img || Id}) no-repeat left center; 
-      background-size: contain;
-      padding-left: 30px;
-      line-height: 1.5;
-    }
 `;
 
 const Divider = styled.div`
   width: 350px;
   height: 1px;
   background-color: #CCC;
-  margin: 20px 0;
+  margin: 10px 0;
 `;
 
 const NewButton = styled(Button)`
   &&& {
-    padding: ${({ sign }) => (sign ? '13px 60px' : '13px 13px')};
-    font-size: ${({ sign }) => (sign ? '20px' : '11px')};
-    border-radius: ${({ sign }) => (sign ? '30px' : '3px')};
-    white-space: nowrap;
+    padding: 13px 60px;
+    font-size: 20px;
+    border-radius: '30px';
   }
 `;
 
@@ -119,9 +110,9 @@ const InterestButton = styled(Button)`
     color: ${({ active }) => (active ? 'white' : 'black')};
     font-size: 14px;
     font-weight: bold;
+    margin: 0px;
     padding: 8px 15px;
     border-radius: 7px;
-
     &:hover {
       background-color: #85A1E8;
       color: white;
@@ -211,7 +202,7 @@ function SignUp(props) {
       <Box>
         <Text title>회원가입</Text>
         <Idarea>
-          <Textarea 
+          <TextInput 
             type="text" 
             img={Id} 
             placeholder="아이디"
@@ -223,7 +214,7 @@ function SignUp(props) {
             onClick={checkIdAvailability}
           />
         </Idarea>
-        <Textarea 
+        <TextInput 
           type="password" 
           img={Pw} 
           placeholder="비밀번호" 
@@ -231,7 +222,7 @@ function SignUp(props) {
           value={password}
           onChange={(event) => setPassword(event.target.value)}
         />
-        <Textarea 
+        <TextInput 
           type="password" 
           img={CheckPw} 
           placeholder="비밀번호 확인" 
@@ -247,7 +238,7 @@ function SignUp(props) {
         <Divider />
 
         <Text>1. 이름(닉네임) *</Text>
-        <Textarea
+        <TextInput
           value={name}
           onChange={(event) => {
             setName(event.target.value);

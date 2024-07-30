@@ -1,9 +1,9 @@
-import { Swiper as SwiperComponent, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import styled from 'styled-components';
+import { Swiper as SwiperComponent, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import styled from "styled-components";
 import A from "../../assets/check.png";
 import B from "../../assets/community.png";
 import C from "../../assets/typetest.png";
@@ -11,19 +11,19 @@ import D from "../../assets/logo.png";
 
 const StyledSwiper = styled(SwiperComponent)`
   .banner {
-    width: 600px; 
+    width: 600px;
     height: 300px;
   }
 
   .swiper-button-prev,
   .swiper-button-next {
-    width: 8px; 
+    width: 8px;
     height: 8px;
     color: black;
   }
 
   .swiper-pagination-bullet {
-    background-color: black; 
+    background-color: black;
   }
 `;
 

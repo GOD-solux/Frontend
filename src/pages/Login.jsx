@@ -8,6 +8,7 @@ import Pw from "../assets/pw.png";
 import Idcheck from "../assets/idcheck.png";
 import { useState } from "react";
 import axios from "axios";
+import TextInput from "../components/TextInput";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -55,18 +56,12 @@ const Textarea = styled.input`
 const LoginButton = styled(Button)`
   &&& {
     padding: 13px 70px;
-    margin: 15px 0px 20px 0px;
+    margin: 0px 0px 20px 0px;
     font: bold 20px;
   }
 `;
 
-const CheckDiv = styled.div`
-  display: flex;
-  align-items: center;
-  font-size: 16px;
-  color: #333;
-  margin: 15px 230px 5px 0px;
-`;
+
 
 const IdCheck = styled.input`
   appearance: none;

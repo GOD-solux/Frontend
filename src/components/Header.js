@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import Muntour from "../assets/logo.png"
+
+import Muntour from "../assets/logo.png";
 
 const Wrapper = styled.div`
-  width: 92%;
+  width: 100%;
   height: 60px;
-  
+  //border-bottom: 1px solid gray;
 
   display: flex;
   justify-content: space-between;
@@ -13,6 +14,12 @@ const Wrapper = styled.div`
   margin-top: 10px;
 `;
 
+const Text = styled.div`
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: end;
+`;
 
 const Logo = styled.div`
   font-size: 40px;
@@ -28,28 +35,42 @@ const LogoImg = styled.img`
   cursor: pointer;
 `;
 
+const PageName = styled.div`
+  padding-bottom: 3px;
+`;
+
 const Navi = styled.div`
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 30px;
-  label{
+  label {
     cursor: pointer;
   }
 `;
 
-const NomalText = styled.div``;
+const NomalText = styled.div`
+  cursor: pointer;
+`;
 
 function Header({ login }) {
 
-  const navigate = useNavigate();
+  let navigate = useNavigate();
   
   return (
     <Wrapper>
-      <Logo onClick={()=>{navigate("/")}}>
-        MUNTOUR
-      </Logo>
+      <Text>
+        <Logo
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          MUNTOUR
+        </Logo>
+        <PageName>{text}</PageName>
+      </Text>
+
       {login ? (
         <Navi>
           <NomalText>마이페이지</NomalText>
@@ -57,8 +78,22 @@ function Header({ login }) {
         </Navi>
       ) : (
         <Navi>
-          <label id="login" onClick={()=>{navigate("/login")}}>로그인</label>
-          <label id="signup" onClick={()=>{navigate("/sign-up")}}>회원가입</label>
+          <label
+            id="login"
+            onClick={() => {
+              navigate("/login");
+            }}
+          >
+            로그인
+          </label>
+          <label
+            id="signup"
+            onClick={() => {
+              navigate("/sign-up");
+            }}
+          >
+            회원가입
+          </label>
         </Navi>
       )}
     </Wrapper>

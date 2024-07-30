@@ -7,6 +7,7 @@ import Id from "../assets/id.png";
 import Pw from "../assets/pw.png";
 import CheckPw from "../assets/check.png";
 import axios from "axios";
+import TextInput from "../components/TextInput";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -53,15 +54,15 @@ const NewButton = styled(Button)`
   &&& {
     padding: 10px 30px;
     font-size: 14px;
-    margin: 7px 0px 15px 0px;
+    margin: 5px;
   }
 `;
 
 const Divider = styled.div`
   width: 350px;
   height: 1px;
-  background-color: #ccc;
-  margin: 10px 0;
+  background-color: #CCC;
+  margin: 15px 0;
 `;
 
 const Modal = styled.div`
@@ -152,7 +153,7 @@ function PwFind(props) {
       <Header />
       <Box>
         <Text>비밀번호 재설정</Text>
-        <Textarea
+        <TextInput
           type="text"
           img={Id}
           placeholder="아이디"
@@ -161,7 +162,7 @@ function PwFind(props) {
         />
         <NewButton title="아이디 확인" onClick={handleIdCheck} disabled={disabled} />
         <Divider />
-        <Textarea
+        <TextInput
           type="password"
           img={Pw}
           placeholder="비밀번호"
@@ -170,7 +171,7 @@ function PwFind(props) {
           value={password}
           onChange={(event) => setPassword(event.target.value)}
         />
-        <Textarea
+        <TextInput
           type="password"
           img={CheckPw}
           placeholder="비밀번호 확인"
