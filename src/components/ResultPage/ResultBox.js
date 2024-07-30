@@ -49,7 +49,7 @@ const Box=styled.div`
     justify-content: center;
     flex-direction: column;
 
-    margin-top:1.5%;
+    margin-top:3%;
     margin-bottom:1.5%;
     margin-left:3%;
     margin-right:3%;
@@ -69,7 +69,7 @@ function ResultBox(){
                 <ResultImage src={images[resultId]} alt="types" />
                 <div dangerouslySetInnerHTML={{ __html: descriptions[resultId]}} />
             </Box>
-            <H1>입니다.</H1>
+           
         </Wrapper>
     );
 }

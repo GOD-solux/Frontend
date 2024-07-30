@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const StyledBtn = styled.div`
-  background: ${props => props.selected ? '#6b88d1' : '#85a1e8'};
+  background: ${props => props.selected ? '#33519e' : '#85a1e8'};
   border-radius: 70px;
   border: none;
   outline: none;
