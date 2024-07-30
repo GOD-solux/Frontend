@@ -5,6 +5,7 @@ import Header from "../components/Header";
 import Id from "../assets/id.png";
 import Pw from "../assets/pw.png";
 import CheckPw from "../assets/check.png";
+import TextInput from "../components/TextInput";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -57,7 +58,7 @@ const NewButton = styled(Button)`
   &&& {
     padding: 10px 30px;
     font-size: 14px;
-    margin: 7px 0px 15px 0px;
+    margin: 5px;
   }
 `;
 
@@ -65,7 +66,7 @@ const Divider = styled.div`
   width: 350px;
   height: 1px;
   background-color: #CCC;
-  margin: 10px 0;
+  margin: 15px 0;
 `;
 
 
@@ -78,7 +79,7 @@ function PwFind(props) {
         <Header/>
         <Box>
             <Text>비밀번호 재설정</Text>
-            <Textarea type="text" img={Id} placeholder="아이디"/>
+            <TextInput type="text" img={Id} placeholder="아이디"/>
 
             <NewButton
               title="아이디 확인"
@@ -88,8 +89,8 @@ function PwFind(props) {
 
             <Divider />
 
-            <Textarea type="password" img={Pw} placeholder="비밀번호" maxLength={12}/>
-            <Textarea type="password" img={CheckPw} placeholder="비밀번호 확인" maxLength={12}/>
+            <TextInput type="password" img={Pw} placeholder="비밀번호" maxLength={12}/>
+            <TextInput type="password" img={CheckPw} placeholder="비밀번호 확인" maxLength={12}/>
 
             <NewButton
               title="비밀번호 재설정"
