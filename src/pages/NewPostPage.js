@@ -19,6 +19,7 @@ const Text = styled.div`
     font-weight: bold;
     text-align: left;
     margin-bottom: 10px;
+    margin-top: ${(props) => props.marginTop || '0px'};
 `;
 
 const TextInput = styled.textarea`
@@ -99,7 +100,7 @@ function NewPostPage(props) {
     return (
         <Wrapper>
             <Header text="글쓰기" />
-            <Text>제목</Text>
+            <Text marginTop="20px">제목</Text>
             <TextInput
                 height="40px"
                 maxLength="30"
