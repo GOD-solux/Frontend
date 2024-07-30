@@ -22,7 +22,7 @@ const Wrapper = styled.div`
 const SearchBar = styled.form`
   border: 2px solid #ACACAC; 
   border-radius: 50px;
-  width: 90%;
+  width: 95%;
   height: 45px;
   font-size: 20px;
   font-weight: 500;
@@ -133,7 +133,7 @@ const MCard = styled(Card)`
 
 
 const CardContainer1 = styled.div`
-  width: 90%;
+  width: 95%;
   display: flex;
   justify-content: center;
   gap: 25px;
@@ -141,14 +141,13 @@ const CardContainer1 = styled.div`
 
 
 const CardContainer2 = styled.div`
-  width: 90%;
+  width: 95%;
   display: flex;
-  justify-content: center;
-  gap: 50px;
+  justify-content: space-between;
 `;
 
 const CardContainer3 = styled.div`
-  width: 90%;
+  width: 95%;
   display: flex;
   justify-content: center;
   gap: 30px;
@@ -172,7 +171,7 @@ const Divider = styled.div`
 const Line = styled.div`
   display: flex;
   align-items: center;
-  width: 90%;
+  width: 95%;
   gap: 10px;
 `;
 
