@@ -4,6 +4,7 @@ import Header from "../components/Header";
 import CategoryHeader from "../components/Community/CategoryHeader";
 import ViewPostItem from "../components/Post/ViewPostItem";
 import CommentItem from "../components/Post/CommentItem";
+import Idcheck from "../assets/idcheck.png"
 
 const Wrapper = styled.div`
     width: 100%;
@@ -75,7 +76,12 @@ const Checkbox = styled.input.attrs({ type: 'checkbox' })`
     border-radius: 5px;
 
     &:checked {
-        background-color: #93AAE5;
+        border-color: transparent;
+        background-image: url(${Idcheck});
+        background-size: 100%;
+        background-repeat: no-repeat;
+        border-color: #85A1E8;
+        border-width: 3px;
     }
 `;
 
@@ -90,7 +96,7 @@ function ViewPostPage({ category }) {
 
     return(
         <Wrapper>
-            <Header/>
+            <Header text="커뮤니티" />
             <CategoryHeader category={category}/>
 
             <PostContainer>

@@ -98,7 +98,7 @@ function NewPostPage(props) {
 
     return (
         <Wrapper>
-            <Header />
+            <Header text="글쓰기" />
             <Text>제목</Text>
             <TextInput
                 height="40px"
@@ -129,6 +129,8 @@ function NewPostPage(props) {
                 <HashTag>#맛집</HashTag>
                 <HashTag>#동행</HashTag>
                 <HashTag>#비추</HashTag>
+                <HashTag>#추천</HashTag>
+                <HashTag>#후기</HashTag>
             </HashTagWrapper>
 
             <ButtonWrapper>
