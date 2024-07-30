@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const Wrapper = styled.button`
   width: 60px;
@@ -24,8 +25,10 @@ const Wrapper = styled.button`
 `;
 
 function WriteBtnIcon() {
+  const navigate = useNavigate();
+
   return (
-    <Wrapper>
+    <Wrapper onClick={() => navigate("/new-post")}>
       <svg
         width="30"
         height="30"

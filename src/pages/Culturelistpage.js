@@ -5,6 +5,7 @@ import CategoryHeader from "../components/Community/CategoryHeader";
 //카테고리헤더 폴더 변경 필요
 
 import CultureItem from "../components/Culturelist/CultureItem";
+import Footer from "../components/Footer";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -41,6 +42,7 @@ function Culturelistpage({ category }) {
         <CultureItem />
         <CultureItem />
       </Container>
+      <Footer />
     </Wrapper>
   );
 }
