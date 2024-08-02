@@ -43,23 +43,23 @@ const DateTime = styled.p`
   color: gray;
 `;
 
-function WritingList({ writings }) {
+function LikesList({ likes}) {
   // 최신순으로 정렬
-  const sortedWritings = writings.sort((a, b) => new Date(b.writeDatetime) - new Date(a.writeDatetime));
+  const sortedLikes = likes.sort((a, b) => new Date(b.writeDatetime) - new Date(a.writeDatetime));
 
   return (
     <Wrapper>
-      {sortedWritings.slice(0, 3).map((writing) => (
-        <WritingBox key={writing.postId}>
+      {sortedLikes.slice(0, 3).map((like) => (
+        <WritingBox key={like.postId}>
           <TextWrapper>
-            <H1>{writing.postTitle}</H1>
-            <NomalText>{writing.nickname}</NomalText>
+            <H1>{like.postTitle}</H1>
+            <NomalText>{like.nickname}</NomalText>
           </TextWrapper>
-          <DateTime>{writing.writeDatetime}</DateTime>
+          <DateTime>{like.writeDatetime}</DateTime>
         </WritingBox>
       ))}
     </Wrapper>
   );
 }
 
-export default WritingList;
+export default LikesList;

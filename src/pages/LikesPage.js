@@ -1,58 +1,96 @@
 import React from 'react';
 import styled from 'styled-components';
 import Header from '../components/Header';
+import { useEffect, useState } from 'react';
 
 const Wrapper = styled.div`
+  height: 40vh;
+  display: flex;
   width: 100%;
- 
-  // display: flex;
-  flex-direction: column; /* 세로 방향으로 배치 */
-  align-items: center; /* 수평 중앙 정렬 */
-  justify-content: center; /* 수직 중앙 정렬 */
-  text-align: center;
-
-
-  
-  //페이지넘버 설정을 위한 임시 padding-bottom
-  padding-bottom: 100px;
-  
+  flex-direction: column;
+  margin-top: 15px;
+  gap: 5px;
+  margin-bottom: 15px;
 `;
 
 const WritingBox = styled.div`
-  height: 100px;
+  height: 130px;
   background-color: #eeeeee;
   width: 80%;
   border-radius: 3px;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 10px;
-  text-align: center;
   display: flex;
+  align-items: center;
+  justify-content: space-between; /* 텍스트와 날짜를 양쪽 끝에 배치 */
+  margin-bottom: 10px;
+  padding: 10px 20px; /* 좌우 패딩 추가 */
+`;
+
+const TextWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px; /* 텍스트와 날짜 사이의 간격 */
+`;
+
+const Title = styled.h2`
+  font-size: 15px;
+  font-weight: bold;
+  margin: 5px 0; /* 상하 여백 */
+`;
+
+const Nickname = styled.p`
+  font-size: 14px;
+  margin: 7px 0; /* 상하 여백 */
+`;
+
+const DateTime = styled.p`
+  font-size: 12px;
+  color: gray;
+  margin: 0; /* 상하 여백 제거 */
 `;
 
 const Container = styled.div`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; /* 수직 중앙 정렬 */
-  text-align: center;
-  gap: 40px;
+  justify-content: center;
+  gap: 20px;
   margin-top: 30px;
 `;
 
 function LikesPage() {
+  const [writingLikesList,setwritingLikesList]=useState([]);
+
+
+   //내가 공감한 글 (mock data)
+   useEffect(() => {
+    fetch('http://localhost:3000/data/myLikesData.json', {
+      method: 'GET',
+    })
+      .then(res => res.json())
+      .then(data => {
+        const sortedData=data.sort((a,b)=>new Date(b.writeDatetime)-new Date(a.writeDatetime));
+        setwritingLikesList(data);
+      })
+      .catch(error => {
+        console.error('Error fetching likes data:', error);
+      });
+  }, []);
+
+
   return (
     <Wrapper>
-      <Header text="공감한 글 목록" Login={true}/>
-     <Container>
-      <WritingBox>게시글 1</WritingBox>
-      <WritingBox>게시글 2</WritingBox>
-      <WritingBox>게시글 3</WritingBox>
-      <WritingBox>게시글 4</WritingBox>
-      <WritingBox>게시글 5</WritingBox>
-      <WritingBox>게시글 6</WritingBox>
-      <WritingBox>게시글 7</WritingBox>
-    </Container>
+      <Header text="내가 공감한 글" login={true} />
+      <Container>
+        {writingLikesList.map((like) => (
+          <WritingBox key={like.postId}>
+            <TextWrapper>
+              <Title>{like.postTitle}</Title>
+              <Nickname>{like.nickname}</Nickname>
+            </TextWrapper>
+            <DateTime>{like.writeDatetime}</DateTime>
+          </WritingBox>
+        ))}
+      </Container>
     </Wrapper>
   );
 }
