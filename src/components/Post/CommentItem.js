@@ -36,11 +36,11 @@ const Date = styled.div`
     font-size: 12px;
 `;
 
-function CommentItem({ userName, content, date }) {
+function CommentItem({ userName, profileImage, content, date }) {
     return(
         <Wrapper>
             <UserContainer>
-                <ProfileImage></ProfileImage>
+                <ProfileImage src={profileImage}/>
                 <UserId>{userName}</UserId>
             </UserContainer>
 
