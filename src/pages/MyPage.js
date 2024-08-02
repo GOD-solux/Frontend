@@ -89,7 +89,7 @@ const H1 = styled.h1`
   font-size: 14px;
 `;
 
-function MyPage(props) {
+function MyPage() {
   const navigate = useNavigate(); 
   const [image, setImage] = useState(profileImage);
   const [myProfile, setMyProfile] = useState([]);
@@ -157,7 +157,7 @@ function MyPage(props) {
 
   return (
     <Wrapper>
-      <Header text="마이페이지" login={props.login} setLogin={props.setLogin} />
+      <Header text="마이페이지" login={true} />
       <ProfileWrapper>
         <ProfileImageWrapper>
           <ProfileImage className="profile-image" src={image} alt="Profile" />
