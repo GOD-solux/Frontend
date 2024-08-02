@@ -67,7 +67,7 @@ const CultureWrapper = styled.div`
 `;
 
 
-function ResultPage() {
+function ResultPage(props) {
   const navigate = useNavigate();
   const { resultId } = useParams(); // resultId는 A, B, C 중 하나로 가정
 
@@ -95,7 +95,7 @@ function ResultPage() {
 
   return (
     <Wrapper>
-      <Header text="유형테스트" />
+      <Header text="유형테스트" login={props.login} setLogin={props.setLogin}/>
       <Container>
         <ResultBox
           type={resultType}
