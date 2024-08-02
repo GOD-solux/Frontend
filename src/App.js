@@ -41,12 +41,15 @@ const GlobalStyles = createGlobalStyle`
 function App() {
   const [login, setLogin] = useState(false);
 
+  
+
+
   return (
     <Router basename={process.env.PUBLIC_URL}>
       <GlobalStyles />
       <Routes>
-        <Route path="/" element={<Mainpage login={login} />}></Route>
-        <Route path="/myPage" element={<MyPage login={login} />}></Route>
+        <Route path="/" element={<Mainpage login={login} setLogin={setLogin} />}></Route>
+        <Route path="/myPage" element={<MyPage login={login} setLogin={setLogin}/>}></Route>
         <Route path="/typeTest/:questionNumber" element={<TestPage />} />
         <Route path="/typeTest/result/:resultId" element={<ResultPage />} />
         <Route path="/pw-find" element={<PwFind />}></Route>
