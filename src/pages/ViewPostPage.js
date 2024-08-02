@@ -135,6 +135,7 @@ function ViewPostPage({ category, login, setLogin }) {
                         content={comment.content}
                         date={comment.date}
                     />
+                ))}
             </CommentList>
 
             <NewCommentContainer>
