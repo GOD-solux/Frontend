@@ -11,6 +11,8 @@ import PlusBtn from "../components/MyPage/PlusBtn";
 import LikesList from "../components/MyPage/LikesList";
 import { useNavigate } from 'react-router-dom';
 
+import {postDatas} from '../datas/postData';
+
 const Wrapper = styled.div`
   width: 100%;
   display: flex;
@@ -91,6 +93,8 @@ const H1 = styled.h1`
 
 function MyPage() {
   const navigate = useNavigate(); 
+
+  const [post, setPost] = useState(postDatas);
   const [image, setImage] = useState(profileImage);
   const [myProfile, setMyProfile] = useState([]);
   const [myCulture, setMyCulture] = useState([]);
@@ -117,14 +121,14 @@ function MyPage() {
     }
   }, [resultId]);
 
-  // 내가 쓴 글 목록 (mock data)
-  useEffect(() => {
-    fetch('http://localhost:3000/data/myWritingsData.json')
-      .then(res => res.json())
-      .then(data => {
-        setWritingList(data);
-      });
-  }, []);
+  // // 내가 쓴 글 목록 (mock data)
+  // useEffect(() => {
+  //   fetch('http://localhost:3000/data/myWritingsData.json')
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       setWritingList(data);
+  //     });
+  // }, []);
 
   // 내가 공감한 글 (mock data)
   useEffect(() => {
