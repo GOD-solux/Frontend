@@ -1,18 +1,20 @@
 import { Swiper as SwiperComponent, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import styled from "styled-components";
-import A from "../../assets/TextInputimg/check.png";
-import B from "../../assets/Mainpage/community.png";
-import C from "../../assets/Mainpage/typetest.png";
-import D from "../../assets/logo.png";
+import A from "../../assets/Mainpage/Banner/chicago.jpg";
+import B from "../../assets/Mainpage/Banner/aqa.jpg";
+import C from "../../assets/Mainpage/Banner/lucy.jpg";
+import D from "../../assets/Mainpage/Banner/epl.jpg";
 
-const StyledSwiper = styled(SwiperComponent)`
+const Swiper = styled(SwiperComponent)`
   .banner {
-    width: 600px;
-    height: 300px;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px; 
+    overflow: hidden;
   }
 
   .swiper-button-prev,
@@ -25,34 +27,56 @@ const StyledSwiper = styled(SwiperComponent)`
   .swiper-pagination-bullet {
     background-color: black;
   }
+
+.swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background-color: #fff;
+  opacity: 0.5;
+}
+.swiper-pagination-bullet-active {
+  opacity: 1;
+}
+`;
+
+const SlideImage = styled.img`
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover; 
 `;
 
 function SwipeBanner() {
   return (
     <>
-      <StyledSwiper
+      <Swiper
         className="banner"
+        autoplay={{
+          delay: 3000,
+          disableOnInteraction: false,
+        }}
         spaceBetween={50}
         slidesPerView={1}
         navigation
         pagination={{ clickable: true }}
-        modules={[Navigation, Pagination]}
+        modules={[Navigation, Pagination, Autoplay]}
+        loop={true}
       >
         <SwiperSlide>
-          <img src={A} alt="Slide 1" />
+          <SlideImage src={A} alt="Slide 1" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={B} alt="Slide 2" />
+          <SlideImage src={B} alt="Slide 2" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={C} alt="Slide 3" />
+          <SlideImage src={C} alt="Slide 3" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={D} alt="Slide 4" />
+          <SlideImage src={D} alt="Slide 4" />
         </SwiperSlide>
-      </StyledSwiper>
+      </Swiper>
     </>
   );
+
 }
 
 export default SwipeBanner;

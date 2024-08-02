@@ -92,7 +92,7 @@ const H1 = styled.h1`
   font-size: 14px;
 `;
 
-function MyPage() {
+function MyPage(props) {
   const navigate = useNavigate(); 
   const [image, setImage] = useState(profileImage);
   const [myProfile,setMyProfile]=useState([]);
