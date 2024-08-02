@@ -62,46 +62,46 @@ function App() {
         ></Route>
         <Route
           path="/community"
-          element={<Communitypage category="전체" />}
+          element={<Communitypage category="전체" login={login} setLogin={setLogin} />}
         ></Route>
         <Route
           path="/community/performance"
-          element={<Communitypage category="공연" />}
+          element={<Communitypage category="공연" login={login} setLogin={setLogin} />}
         ></Route>
         <Route
           path="/community/exhibition"
-          element={<Communitypage category="전시" />}
+          element={<Communitypage category="전시" login={login} setLogin={setLogin} />}
         ></Route>
         <Route
           path="/community/sport"
-          element={<Communitypage category="스포츠" />}
+          element={<Communitypage category="스포츠" login={login} setLogin={setLogin} />}
         ></Route>
         <Route
           path="/community/book"
-          element={<Communitypage category="도서" />}
+          element={<Communitypage category="도서" login={login} setLogin={setLogin} />}
         ></Route>
         <Route
           path="/culturelist"
-          element={<Culturelistpage category="전체" />}
+          element={<Culturelistpage category="전체" login={login} setLogin={setLogin}/>}
         ></Route>
         <Route
           path="/culturelist/performance"
-          element={<Culturelistpage category="공연" />}
+          element={<Culturelistpage category="공연" login={login} setLogin={setLogin}/>}
         ></Route>
         <Route
           path="/culturelist/exhibition"
-          element={<Culturelistpage category="전시" />}
+          element={<Culturelistpage category="전시" login={login} setLogin={setLogin}/>}
         ></Route>
         <Route
           path="/culturelist/sport"
-          element={<Culturelistpage page="culturelist" category="스포츠" />}
+          element={<Culturelistpage page="culturelist" category="스포츠" login={login} setLogin={setLogin}/>}
         ></Route>
         <Route
           path="/culturelist/book"
-          element={<Culturelistpage page="culturelist" category="도서" />}
+          element={<Culturelistpage page="culturelist" category="도서" login={login} setLogin={setLogin}/>}
         ></Route>
-        <Route path="/new-post" element={<NewPostPage />}></Route>
-        <Route path="/view-post" element={<ViewPostPage />}></Route>
+        <Route path="/new-post" element={<NewPostPage login={login} setLogin={setLogin}/>}></Route>
+        <Route path="/view-post" element={<ViewPostPage login={login} setLogin={setLogin}/>}></Route>
       </Routes>
     </Router>
   );

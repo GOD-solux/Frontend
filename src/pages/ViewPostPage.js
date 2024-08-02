@@ -87,7 +87,7 @@ const Checkbox = styled.input.attrs({ type: 'checkbox' })`
     }
 `;
 
-function ViewPostPage({ category }) {
+function ViewPostPage({ category, login, setLogin }) {
     //const [comment, setComment] = useState('');
     //const [isPrivate, setIsPrivate] = useState(false);
 
@@ -98,7 +98,7 @@ function ViewPostPage({ category }) {
 
     return(
         <Wrapper>
-            <Header text="커뮤니티" />
+            <Header text="커뮤니티" login={login} setLogin={setLogin}/>
             <CategoryHeader category={category}/>
 
             <PostContainer>

@@ -12,6 +12,8 @@ import Community from "../assets/Mainpage/community.png";
 import Typetest from "../assets/Mainpage/typetest.png";
 import Footer from "../components/Footer";
 
+import { culturelistData } from "../datas/culturelist";
+
 const Wrapper = styled.div`
   width: 100%;
   display: flex;
@@ -180,19 +182,65 @@ function Mainpage(props) {
 
   const { title, className } = props;
 
-  const [word, setWord] = useState("");
-  const onSubmit = async() => {
-      window.location.href = "/culturelist/" + word;
+  // const [word, setWord] = useState("");
+  // const onSubmit = async() => {
+  //     window.location.href = "/culturelist/" + word;
+  // };
+
+  // 검색어 및 결과를 저장할 상태
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredData, setFilteredData] = useState([]);
+  const [isSearchSubmitted, setIsSearchSubmitted] = useState(false);
+
+  // 검색어 입력시 호출되는 함수
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
   };
+
+  // 검색 버튼 클릭시 호출되는 함수
+  const handleSearchClick = () => {
+    const results = culturelistData.filter((item) =>
+      item.title.includes(searchTerm)
+    );
+    setFilteredData(results);
+    setIsSearchSubmitted(true); // 검색이 제출됨을 표시
+  };
+
+  // 폼 제출 방지
+  // const onSubmit = (e) => {
+  //   e.preventDefault(); 
+  //   handleSearchClick(); // 검색 버튼 클릭 핸들러 호출
+  // };
 
   return (
     <Wrapper>
       <Header login={props.login} setLogin={props.setLogin}/>
       <SearchBar>
-        <input type="search" placeholder="search..." onChange={(e) => {setWord(e.target.value)}}/>
-        <img src={Search} alt="search" onClick={() => {onSubmit()}}/>
+        <input type="search" placeholder="search..." value={searchTerm}
+          onChange={handleSearchChange}/>
+        <img src={Search} alt="search" onClick={handleSearchClick} />
       </SearchBar>
 
+      {/* 검색 결과 표시 */}
+      <div style={{width:'95%'}}>
+        {isSearchSubmitted ? (
+          filteredData.length > 0 ? (
+            filteredData.map((item, index) => (
+              <div key={index} style={{ marginBottom: '10px' }}>
+                <a href={item.url || "https://www.interpark.com"} 
+                target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'black' }}>
+                  <h4>{item.category} | {item.title}</h4>
+                </a>
+              </div>
+            ))
+          ) : (
+            <p>해당하는 문화가 없습니다.</p>
+          )
+        ) : null}
+      </div>
+
+
+      
       <CardContainer1>
         <UCard 
           bcolor="#85A1E8" tcolor="white" nav="/community" title="문화 커뮤니티" bimg={Community} />

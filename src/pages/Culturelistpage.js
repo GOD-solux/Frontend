@@ -31,10 +31,10 @@ const Container = styled.div`
   margin-top: 30px;
 `;
 
-function Culturelistpage({ category }) {
+function Culturelistpage({ category, login, setLogin }) {
   return (
     <Wrapper>
-      <Header text="문화 생활 더보기" />
+      <Header text="문화 생활 더보기" login={login} setLogin={setLogin}/>
       <CategoryHeader page="culturelist" category={category} />
 
       <Container>
