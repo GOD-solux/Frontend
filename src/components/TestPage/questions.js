@@ -1,5 +1,5 @@
 import questionImage1 from "../../assets/question1.png";
-// import questionImage2 from "../../assets/question2.png";
+import questionImage2 from "../../assets/question2.png";
 
 
 export const questions = {
@@ -30,7 +30,7 @@ export const questionMapping = {
 
 export const imgs={
   1:questionImage1,
-  // 2:questionImage2,
+  2:questionImage2,
   // 3:questionImage3,
   // 4:questionImage4,
   // 5:questionImage5,

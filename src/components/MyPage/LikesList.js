@@ -43,7 +43,7 @@ const DateTime = styled.p`
   color: gray;
 `;
 
-function LikesList({ likes}) {
+function LikesList({likes}) {
   // 최신순으로 정렬
   const sortedLikes = likes.sort((a, b) => new Date(b.writeDatetime) - new Date(a.writeDatetime));
 

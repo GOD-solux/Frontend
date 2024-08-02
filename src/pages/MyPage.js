@@ -1,5 +1,5 @@
 // MyPage.js
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Header from "../components/Header";
 import MyProfile from "../components/MyPage/MyProfile";
@@ -11,14 +11,11 @@ import PlusBtn from "../components/MyPage/PlusBtn";
 import LikesList from "../components/MyPage/LikesList";
 import { useNavigate } from 'react-router-dom';
 
-import {userData} from '../datas/user';
-
 const Wrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-
 `;
 
 const ProfileWrapper = styled.div`
@@ -38,7 +35,7 @@ const CultureWrapper = styled.div`
   height: 100px;
   gap: 50px;
   flex-direction: row;
-  margin-top:40px;
+  margin-top: 40px;
 `;
 
 const ProfileImageWrapper = styled.div`
@@ -79,7 +76,6 @@ const Hr = styled.hr`
   height: 0.5px;
   background-color: #dcdcdc;
   margin: 20px;
-
 `;
 
 const HeaderWrapper = styled.div`
@@ -93,64 +89,61 @@ const H1 = styled.h1`
   font-size: 14px;
 `;
 
-function MyPage(props) {
+function MyPage() {
   const navigate = useNavigate(); 
   const [image, setImage] = useState(profileImage);
-  const [myProfile,setMyProfile]=useState([]);
-  const [myCulture,setMyCulture]=useState([]);
-  const [writingList,setWritingList]=useState([]);
-  const [writingLikesList,setwritingLikesList]=useState([]);
+  const [myProfile, setMyProfile] = useState([]);
+  const [myCulture, setMyCulture] = useState([]);
+  const [writingList, setWritingList] = useState([]);
+  const [writingLikesList, setWritingLikesList] = useState([]);
 
- 
-  //프로필정보,나의 문화유형(mock data)
-  useEffect(()=>{
-    fetch('http://localhost:3000/data/myPageData.json',{
-      method:'GET',
-  })
-    .then(res=>res.json())
-    .then(data=>{
-      setMyProfile(data);
-      setMyCulture(data);
-    });
-  },[]);
-
-
-  //내가 쓴 글 목록(mock data)
-  useEffect(()=>{
-    fetch('http://localhost:3000/data/myWritingsData.json',{
-      method:'GET',
-  })
-    .then(res=>res.json())
-    .then(data=>{
-      setWritingList(data);
-    });
-  },[]);
-
-
-  //내가 공감한 글 (mock data)
+  // localStorage에서 resultId 가져오기
+  const resultId = localStorage.getItem('resultId');
+  
+  // resultId에 따른 문화 유형 업데이트
   useEffect(() => {
-    fetch('http://localhost:3000/data/myLikesData.json', {
-      method: 'GET',
-    })
+    if (resultId) {
+      // resultId에 따라 myProfile 및 myCulture 상태 업데이트 (여기서는 임의로 데이터 설정)
+      fetch('http://localhost:3000/data/myPageData.json')
+        .then(res => res.json())
+        .then(data => {
+          const updatedProfile = data.map(profile => ({
+            ...profile,
+            muntourType: resultId // resultId를 사용하여 유형 업데이트
+          }));
+          setMyProfile(updatedProfile);
+          setMyCulture(updatedProfile); // 이 예제에서는 myProfile과 동일하게 설정
+        });
+    }
+  }, [resultId]);
+
+  // 내가 쓴 글 목록 (mock data)
+  useEffect(() => {
+    fetch('http://localhost:3000/data/myWritingsData.json')
       .then(res => res.json())
       .then(data => {
-        console.log(data); // 데이터 확인
-        setwritingLikesList(data);
+        setWritingList(data);
+      });
+  }, []);
+
+  // 내가 공감한 글 (mock data)
+  useEffect(() => {
+    fetch('http://localhost:3000/data/myLikesData.json')
+      .then(res => res.json())
+      .then(data => {
+        setWritingLikesList(data);
       })
       .catch(error => {
         console.error('Error fetching likes data:', error);
       });
   }, []);
-  
 
- 
-
-  //프로필 사진 수정
+  // 프로필 사진 수정
   const handleProfileClick = (e) => {
-    const file = e.target.files[0]; //사용자가 선택한 첫 번째 파일을 가져옴.
+    const file = e.target.files[0];
     if (file) {
-      const imageUrl = URL.createObjectURL(file);//파일의 URL 생성.
-      setImage(imageUrl);//image 상태 업데이트.
+      const imageUrl = URL.createObjectURL(file);
+      setImage(imageUrl);
     }
   };
 
@@ -161,8 +154,6 @@ function MyPage(props) {
   const handleLikes = () => {
     navigate(`/myLikes`);
   };
-
-
 
   return (
     <Wrapper>
@@ -180,21 +171,21 @@ function MyPage(props) {
             onChange={handleProfileClick}
           />
         </ProfileImageWrapper>
-        {myProfile.map(p=>(
+        {myProfile.map(p => (
           <MyProfile 
             key={p.id}
             memberId={p.memberId}
             nickname={p.nickname}
-            type={p.type}
+            type={p.muntourType} // 업데이트된 유형 사용
           />
         ))}
       </ProfileWrapper>
       <Hr />
       <CultureWrapper>
-        {myCulture.map(p=>(
+        {myCulture.map(p => (
           <MyCulture
             key={p.id}
-            muntourType={p.muntourType}
+            muntourType={p.muntourType} // 업데이트된 유형 사용
           />
         ))}
       </CultureWrapper>
@@ -205,8 +196,6 @@ function MyPage(props) {
             <PlusBtn onClick={handleWritings}>더 보기</PlusBtn>
           </HeaderWrapper>
           <WritingList writings={writingList} />
-          
-
         </WritingWrapper>
         <WritingWrapper>
           <HeaderWrapper>
