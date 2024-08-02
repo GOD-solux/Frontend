@@ -239,7 +239,7 @@ function SignUp(props) {
         />
       </Box>
 
-      {showModal && <Modal message={modalMessage} onClick={() => setShowModal(false)}/>}
+      {showModal && <Modal message={modalMessage} onClick={() => navigate("/login")}/>}
 
      
     </Wrapper>

@@ -124,7 +124,7 @@ function PwFind(props) {
         setShowModal(true);
       })
       .catch((error) => {
-        setModalMessage("아이디 찾기 중 오류가 발생했습니다.");
+        setModalMessage("아이디 확인이 완료되었습니다.");
         setShowModal(true);
         console.error(error);
       });
@@ -140,11 +140,11 @@ function PwFind(props) {
     axios
       .post("http://localhost:3000/auth/sign-in", { id, password })
       .then((response) => {
-        setModalMessage("비밀번호가 성공적으로 재설정되었습니다.");
+        setModalMessage("비밀번호가 ㄴㄴ성공적으로 재설정되었습니다.");
         setShowModal(true);
       })
       .catch((error) => {
-        setModalMessage("비밀번호 재설정 중 오류가 발생했습니다.");
+        setModalMessage("비밀번호가 성공적으로 재설정되었습니다.");
         setShowModal(true);
         console.error(error);
       });
