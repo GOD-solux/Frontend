@@ -3,42 +3,48 @@ import styled from 'styled-components';
 import Header from '../components/Header';
 
 const Wrapper = styled.div`
+  height: 40vh;
+  display: flex;
   width: 100%;
-  flex-direction: column; /* 세로 방향으로 배치 */
-  align-items: center; /* 수평 중앙 정렬 */
-  justify-content: center; /* 수직 중앙 정렬 */
-  text-align: center;
-  padding-bottom: 100px; /* 페이지 넘버 설정을 위한 임시 padding-bottom */
+  flex-direction: column;
+  margin-top: 15px;
+  gap: 5px;
+  margin-bottom: 15px;
 `;
 
 const WritingBox = styled.div`
-  height: 100px;
+  height: 130px;
   background-color: #eeeeee;
   width: 80%;
   border-radius: 3px;
+  display: flex;
   align-items: center;
   justify-content: space-between; /* 텍스트와 날짜를 양쪽 끝에 배치 */
   margin-bottom: 10px;
-  text-align: center;
+  padding: 10px 20px; /* 좌우 패딩 추가 */
+`;
+
+const TextWrapper = styled.div`
   display: flex;
-  padding: 10px;
+  flex-direction: column;
+  margin-right: 20px; /* 텍스트와 날짜 사이의 간격 */
 `;
 
 const Title = styled.h2`
-  font-size: 16px;
+  font-size: 15px;
   font-weight: bold;
-  margin: 0;
+  margin: 5px 0; /* 상하 여백 */
 `;
 
 const Nickname = styled.p`
   font-size: 14px;
-  margin: 0;
+  margin: 7px 0; /* 상하 여백 */
 `;
 
 const DateTime = styled.p`
   font-size: 12px;
-  margin: 0;
   color: gray;
+  margin: 0; /* 상하 여백 제거 */
 `;
 
 const Container = styled.div`
@@ -46,8 +52,7 @@ const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  text-align: center;
-  gap: 40px;
+  gap: 20px;
   margin-top: 30px;
 `;
 
@@ -60,7 +65,6 @@ function WritingsPage() {
     })
       .then(res => res.json())
       .then(data => {
-        // 날짜를 기준으로 내림차순으로 정렬
         const sortedData = data.sort((a, b) => new Date(b.writeDatetime) - new Date(a.writeDatetime));
         setWritingList(sortedData);
       })
@@ -75,10 +79,10 @@ function WritingsPage() {
       <Container>
         {writingList.map((writing) => (
           <WritingBox key={writing.postId}>
-            <div>
+            <TextWrapper>
               <Title>{writing.postTitle}</Title>
               <Nickname>{writing.nickname}</Nickname>
-            </div>
+            </TextWrapper>
             <DateTime>{writing.writeDatetime}</DateTime>
           </WritingBox>
         ))}

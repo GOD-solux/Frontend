@@ -7,81 +7,39 @@
     },
     {
         "postId": 2,
-        "postTitle": "07/19",
+        "postTitle": "얼른 종강하고 콘서트 가고 싶다",
         "nickname":"minseo",
         "writeDatetime":"2024-07-19"
     },
     {
         "postId": 3,
-        "postTitle": "07/10",
+        "postTitle": "같이 야구 보러 가실 분?",
         "nickname":"minseo",
         "writeDatetime":"2024-07-10"
     },
     {
         "postId": 4,
-        "postTitle": "07/31",
+        "postTitle": "고척돔 근처에는 맛집 없나요",
         "nickname":"minseo",
         "writeDatetime":"2024-07-31"
     },
     {
         "postId": 5,
-        "postTitle": "07/01",
+        "postTitle": "야구보려고 하는데 메뉴추천좀 해주세요",
         "nickname":"minseo",
         "writeDatetime":"2024-07-01"
     },
     {
         "postId": 6,
-        "postTitle": "06/20",
+        "postTitle": "즐겁네요",
         "nickname":"minseo",
         "writeDatetime":"2024-06-20"
     },
     {
         "postId": 7,
-        "postTitle": "06/19",
+        "postTitle": "행복한 고민",
         "nickname":"minseo",
         "writeDatetime":"2024-06-19"
-    },
-    {
-        "postId": 8,
-        "postTitle": "04/20",
-        "nickname":"minseo",
-        "writeDatetime":"2024-04-20"
-    },
-    {
-        "postId": 9,
-        "postTitle": "03/20",
-        "nickname":"minseo",
-        "writeDatetime":"2024-03-20"
-    },
-    {
-        "postId": 10,
-        "postTitle": "02/20",
-        "nickname":"minseo",
-        "writeDatetime":"2024-02-20"
-    },
-    {
-        "postId": 11,
-        "postTitle": "07/20",
-        "nickname":"minseo",
-        "writeDatetime":"2024-07-20"
-    },
-    {
-        "postId": 12,
-        "postTitle": "01/20",
-        "nickname":"minseo",
-        "writeDatetime":"2024-01-20"
-    },
-    {
-        "postId": 13,
-        "postTitle": "07/18",
-        "nickname":"minseo",
-        "writeDatetime":"2024-07-18"
-    },
-    {
-        "postId": 14,
-        "postTitle": "07/18",
-        "nickname":"minseo",
-        "writeDatetime":"2024-07-18"
     }
 
 ]

@@ -8,6 +8,7 @@ import ProfileBtn from "../components/MyPage/ProfileBtn";
 import MyCulture from "../components/MyPage/MyCulture";
 import WritingList from "../components/MyPage/WritingList";
 import PlusBtn from "../components/MyPage/PlusBtn";
+import LikesList from "../components/MyPage/LikesList";
 import { useNavigate } from 'react-router-dom';
 
 import {userData} from '../datas/user';
@@ -98,6 +99,7 @@ function MyPage(props) {
   const [myProfile,setMyProfile]=useState([]);
   const [myCulture,setMyCulture]=useState([]);
   const [writingList,setWritingList]=useState([]);
+  const [writingLikesList,setwritingLikesList]=useState([]);
 
  
   //프로필정보,나의 문화유형(mock data)
@@ -113,7 +115,7 @@ function MyPage(props) {
   },[]);
 
 
-  //내가 쓴 글 목록, 공감한 글 목록 (mock data)
+  //내가 쓴 글 목록(mock data)
   useEffect(()=>{
     fetch('http://localhost:3000/data/myWritingsData.json',{
       method:'GET',
@@ -123,6 +125,23 @@ function MyPage(props) {
       setWritingList(data);
     });
   },[]);
+
+
+  //내가 공감한 글 (mock data)
+  useEffect(() => {
+    fetch('http://localhost:3000/data/myLikesData.json', {
+      method: 'GET',
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data); // 데이터 확인
+        setwritingLikesList(data);
+      })
+      .catch(error => {
+        console.error('Error fetching likes data:', error);
+      });
+  }, []);
+  
 
  
 
@@ -194,7 +213,7 @@ function MyPage(props) {
             <H1>공감한 글 목록</H1>
             <PlusBtn onClick={handleLikes}>더 보기</PlusBtn>
           </HeaderWrapper>
-          <WritingList writings={writingList} /> 
+          <LikesList likes={writingLikesList} /> 
         </WritingWrapper>
       </WritingsWrapper>
     </Wrapper>
