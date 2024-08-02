@@ -66,7 +66,7 @@ const HashTagList = [
   { name: "후기", selected: false },
 ];
 
-function Communitypage({ category }) {
+function Communitypage({ category}) {
   const [post, setPost] = useState(postData);
   const [hashtag, setHashtag] = useState(HashTagList);
   const [selectedHashtag, setSelectedHashtag] = useState(null);

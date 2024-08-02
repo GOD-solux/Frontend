@@ -50,17 +50,16 @@ function App() {
       <Routes>
         <Route path="/" element={<Mainpage login={login} setLogin={setLogin} />}></Route>
         <Route path="/myPage" element={<MyPage login={login} setLogin={setLogin}/>}></Route>
-        <Route path="/typeTest/:questionNumber" element={<TestPage />} />
-        <Route path="/typeTest/result/:resultId" element={<ResultPage />} />
+        <Route path="/typeTest/:questionNumber" element={<TestPage login={login} setLogin={setLogin}/>} />
+        <Route path="/typeTest/result/:resultId" element={<ResultPage login={login} setLogin={setLogin}/>} />
         <Route path="/pw-find" element={<PwFind />}></Route>
-        <Route path="/myWritings" element={<WritingsPage />} />
-        <Route path="/myLikes" element={<LikesPage />} />
+        <Route path="/myWritings" element={<WritingsPage login={login} setLogin={setLogin}/>} />
+        <Route path="/myLikes" element={<LikesPage login={login} setLogin={setLogin}/>} />
         <Route path="/sign-up" element={<SignUp login={login} />}></Route>
         <Route
           path="/login"
           element={<Login login={login} setLogin={setLogin} />}
         ></Route>
-        <Route path="/pw-find" element={<PwFind />}></Route>
         <Route
           path="/community"
           element={<Communitypage category="전체" />}

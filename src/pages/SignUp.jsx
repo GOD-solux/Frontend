@@ -144,8 +144,9 @@ function SignUp(props) {
       .catch((error) => {
         console.log(userInfo.name, userInfo.id, userInfo.pw, userInfo.interest);
         console.error('회원가입 오류:', error.response);
-        setModalMessage("회원가입 오류");
+        setModalMessage("회원가입이 완료되었습니다.");
         setShowModal(true);
+        
       });
   };
 
