@@ -1,24 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
+import styled from "styled-components";
 import Box from "../components/Box";
 import Button from "../components/Button";
-import styled from "styled-components";
 import Header from "../components/Header";
-import Id from "../assets/id.png";
-import Pw from "../assets/pw.png";
-import CheckPw from "../assets/check.png";
+import Id from "../assets/TextInputimg/id.png";
+import Pw from "../assets/TextInputimg/pw.png";
+import CheckPw from "../assets/TextInputimg/check.png";
 import TextInput from '../components/TextInput';
+import Modal from '../components/Modal';
 
 const Wrapper = styled.div`
   width: 100%;
-
-  //임시 중앙정렬
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 50px;
-
-  //임시 height
   height: 700px;
 `;
 
@@ -37,7 +35,6 @@ const Idarea = styled.label`
   height: 50px;
   position: relative;
 `;
-
 
 const Textarea = styled.input`
     font-size: 16px; 
@@ -74,12 +71,10 @@ const ButtonGroup = styled.div`
   margin: 0px 60px 0px 0px;
 `;
 
-
-
 const InterestButton = styled(Button)`
   &&& {
-    background-color: #EEEEEE;
-    color: black;
+    background-color: ${({ active }) => (active ? '#85A1E8' : '#EEEEEE')};
+    color: ${({ active }) => (active ? 'white' : 'black')};
     font-size: 14px;
     font-weight: bold;
     margin: 0px;
@@ -89,62 +84,165 @@ const InterestButton = styled(Button)`
       background-color: #85A1E8;
       color: white;
     }
-
   }
 `;
 
+const ErrorText = styled.div`
+  color: red;
+  font-size: 12px;
+  margin: 5px 0;
+`;
+
+const baseInfo = {
+  id : null,
+  pw: null,
+  name: null,
+  interest: [],
+}
+
 function SignUp(props) {
-
   const navigate = useNavigate();
+ 
+  const [userInfo, setUserInfo] = useState(baseInfo);
 
-  const { title, onClick, disabled, className } = props;
+
+  useEffect(() => {
+    console.log(userInfo)
+    
+  }, [userInfo])
+ 
+   const [confirmPassword, setConfirmPassword] = useState("");
+   const [pwMatch, setPwMatch] = useState(true);
+
+   const [error, setError] = useState("");
+
+   const [showModal, setShowModal] = useState(false);
+   const [modalMessage, setModalMessage] = useState("");
+
+  const register = () => {
+    if (userInfo.pw !== confirmPassword) {
+      setPwMatch(false);
+      return;
+    }
+    if (!userInfo.name) {
+      setError("이름은 필수 입력란입니다.");
+      return;
+    }
   
-  const [activeButton, setActiveButton] = useState(null);
 
-  const handleButtonClick = (index) => {
-    setActiveButton(index);
+    axios
+      .post('http://localhost:3000/auth/sign-up', {
+        baseInfo
+      })
+      .then((response) => {
+        console.log('회원가입 성공:', response.data);
+        localStorage.setItem('token', response.data.jwt);
+        setModalMessage("회원가입이 완료되었습니다.");
+        setShowModal(true);
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(userInfo.name, userInfo.id, userInfo.pw, userInfo.interest);
+        console.error('회원가입 오류:', error.response);
+        setModalMessage("회원가입 오류");
+        setShowModal(true);
+      });
   };
 
-    return (
-      
-      <Wrapper>
-        <Header/>
-        <Box>
-            <Text title>회원가입</Text>
-            <Idarea>
-              <TextInput type="text" img={Id} placeholder="아이디" withButton={true}/>
-            </Idarea>
-            <TextInput type="password" img={Pw} placeholder="비밀번호" maxLength={12}/>
-            <TextInput type="password" img={CheckPw} placeholder="비밀번호 확인" maxLength={12}/>
+  const handleInterestClick = (index) => {
+    setUserInfo(prevUserInfo => {
+      if (prevUserInfo.interest.includes(index)) {
+        return {
+          ...prevUserInfo,
+          interest: prevUserInfo.interest.filter(i => i !== index),
+        };
+      } else {
+        return {
+          ...prevUserInfo,
+          interest: [...prevUserInfo.interest, index],
+        };
+      }
+    });
+  };
 
-            <Divider />
 
-            <Text>1. 이름(닉네임) *</Text>
-            <Textarea/>
+  return (
+    <Wrapper>
+      <Header />
+      <Box>
+        <Text title>회원가입</Text>
+        <Idarea>
+          <TextInput 
+            type="text" 
+            img={Id} 
+            placeholder="아이디"
+            value={userInfo.id}
+            onChange={(event) => setUserInfo({...userInfo, id: event.target.value})}
+            withButton={true}
+          />
+        </Idarea>
+        
+         <TextInput 
+          type="password" 
+          img={Pw} 
+          placeholder="비밀번호" 
+          maxLength={12}
+          value={userInfo.pw}
+          onChange={(event) => setUserInfo({...userInfo, pw: event.target.value})}
+        />
+        
+        <TextInput 
+          type="password" 
+          img={CheckPw} 
+          placeholder="비밀번호 확인"
+          maxLength={12}
+          value={confirmPassword}
+          onChange={(event) => {
+            setConfirmPassword(event.target.value);
+            setPwMatch(event.target.value === userInfo.pw);
+          }}
+        />
+        {!pwMatch && <ErrorText>비밀번호가 일치하지 않습니다.</ErrorText>}
+        
 
-            <Text>2. 관심분야(선택)</Text>
-            <ButtonGroup>
-            {['공연', '전시', '스포츠', '도서'].map((title, index) => (
+        <Divider />
+  
+        <Text>1. 이름(닉네임) *</Text>
+        <Textarea
+          value={userInfo.name}
+          onChange={(event) => {
+            setUserInfo({...userInfo, name: event.target.value});
+            setError("");
+          }}
+        />
+        {error && <ErrorText>{error}</ErrorText>}
+        
+        <Text>2. 관심분야(선택)</Text>
+        <ButtonGroup>
+          {['공연', '전시', '스포츠', '도서'].map((title, index) => (
             <InterestButton
-              key={title}
-              active={activeButton === index}
+              key={index}
+              active={userInfo.interest.includes(index)}
               title={title}
-              onClick={() => handleButtonClick(index)}
-              disabled={disabled}
+              onClick={() => handleInterestClick(index)}
             >
               {title}
             </InterestButton>
           ))}
         </ButtonGroup>
+        
+        <NewButton
+          sign
+          title="회원가입"
+          onClick={register}
+        />
+      </Box>
 
-            <NewButton
-              title="회원가입"
-              onClick={()=>{navigate("/login")}}
-              disabled={disabled}
-            />            
-        </Box>
-      </Wrapper>
-    );
-  }
-  
-  export default SignUp;
+      {showModal && <Modal message={modalMessage} onClick={() => setShowModal(false)}/>}
+
+     
+    </Wrapper>
+  );
+}
+
+export default SignUp;

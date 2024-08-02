@@ -4,9 +4,9 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import styled from "styled-components";
-import A from "../../assets/check.png";
-import B from "../../assets/community.png";
-import C from "../../assets/typetest.png";
+import A from "../../assets/TextInputimg/check.png";
+import B from "../../assets/Mainpage/community.png";
+import C from "../../assets/Mainpage/typetest.png";
 import D from "../../assets/logo.png";
 
 const StyledSwiper = styled(SwiperComponent)`
