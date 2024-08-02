@@ -99,7 +99,7 @@ function NewPostPage(props) {
 
     return (
         <Wrapper>
-            <Header text="글쓰기" />
+            <Header text="글쓰기" login={props.login} setLogin={props.setLogin}/>
             <Text marginTop="20px">제목</Text>
             <TextInput
                 height="40px"

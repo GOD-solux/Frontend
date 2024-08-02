@@ -56,7 +56,7 @@ const Container = styled.div`
   margin-top: 30px;
 `;
 
-function WritingsPage() {
+function WritingsPage(props) {
   const [writingList, setWritingList] = useState([]);
 
   useEffect(() => {
@@ -75,7 +75,7 @@ function WritingsPage() {
 
   return (
     <Wrapper>
-      <Header text="내가 작성한 글" login={true} />
+      <Header text="내가 작성한 글" login={props.login} setLogin={props.setLogin}/>
       <Container>
         {writingList.map((writing) => (
           <WritingBox key={writing.postId}>

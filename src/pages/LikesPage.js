@@ -57,7 +57,7 @@ const Container = styled.div`
   margin-top: 30px;
 `;
 
-function LikesPage() {
+function LikesPage(props) {
   const [writingLikesList,setwritingLikesList]=useState([]);
 
 
@@ -79,7 +79,7 @@ function LikesPage() {
 
   return (
     <Wrapper>
-      <Header text="내가 공감한 글" login={true} />
+      <Header text="내가 공감한 글" login={props.login} setLogin={props.setLogin}/>
       <Container>
         {writingLikesList.map((like) => (
           <WritingBox key={like.postId}>

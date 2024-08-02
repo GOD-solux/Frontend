@@ -166,7 +166,7 @@ function MyPage(props) {
 
   return (
     <Wrapper>
-      <Header text="마이페이지" login={true} />
+      <Header text="마이페이지" login={props.login} setLogin={props.setLogin} />
       <ProfileWrapper>
         <ProfileImageWrapper>
           <ProfileImage className="profile-image" src={image} alt="Profile" />
