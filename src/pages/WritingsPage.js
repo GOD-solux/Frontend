@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Header from '../components/Header';
 import { useNavigate } from 'react-router-dom';
 
-import { postDatas as initialPostDatas } from '../../src/datas/postData';
+import { postDatas as initialPostDatas } from '../../src/datas/postData'; // 데이터 파일 경로 확인
 
 const Wrapper = styled.div`
   height: 40vh;
@@ -59,32 +59,30 @@ const Container = styled.div`
   margin-top: 30px;
 `;
 
-function WritingsPage({postDatas = initialPostDatas} ) {
+function WritingsPage({ postDatas = initialPostDatas }) {
   const navigate = useNavigate();
 
   // 배열 복사 후 최신순으로 정렬
-  const sortedWritings = [...postDatas].sort((a, b) => new Date(b.writeDatetime) - new Date(a.writeDatetime));
-  const [writingList, setWritingList] = useState(sortedWritings); // postData 사용
+  const sortedWritings = [...postDatas].sort((a, b) => new Date(b.date) - new Date(a.date));
+  const [writingList, setWritingList] = useState(sortedWritings);
 
   const handleClick = (writing) => {
-    // // postId로 전체 postData에서 해당 게시글 찾기
-    const selectedPost = postDatas.find(post => post.id === writing.postId);
+    // id로 전체 postData에서 해당 게시글 찾기
+    const selectedPost = postDatas.find(post => post.id === writing.id);
     navigate('/view-post', { state: { post: selectedPost } });
   };
-
-  
 
   return (
     <Wrapper>
       <Header text="내가 작성한 글" login={true}/>
       <Container>
         {writingList.map((writing) => (
-          <WritingBox key={writing.postId} onClick={() => handleClick(writing)}>
+          <WritingBox key={writing.id} onClick={() => handleClick(writing)}>
             <TextWrapper>
-              <Title>{writing.postTitle}</Title>
-              <Nickname>{writing.nickname}</Nickname>
+              <Title>{writing.title}</Title>
+              <Nickname>{writing.nickname}</Nickname> {/* userId 대신 닉네임으로 바꿔야 할 경우 수정 필요 */}
             </TextWrapper>
-            <DateTime>{writing.writeDatetime}</DateTime>
+            <DateTime>{writing.date}</DateTime>
           </WritingBox>
         ))}
       </Container>
