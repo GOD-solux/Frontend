@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
+import { useState } from "react";
 import reset from "styled-reset";
 import Mainpage from "./pages/Mainpage";
 import MyPage from "./pages/MyPage"; // MyPage를 올바르게 가져오기
@@ -38,19 +39,24 @@ const GlobalStyles = createGlobalStyle`
 `;
 
 function App() {
+  const [login, setLogin] = useState(false);
+
   return (
     <Router basename={process.env.PUBLIC_URL}>
       <GlobalStyles />
       <Routes>
-        <Route path="/" element={<Mainpage login={false} />}></Route>
-        <Route path="/myPage" element={<MyPage login={true} />}></Route>
+        <Route path="/" element={<Mainpage login={login} />}></Route>
+        <Route path="/myPage" element={<MyPage login={login} />}></Route>
         <Route path="/typeTest/:questionNumber" element={<TestPage />} />
         <Route path="/typeTest/result/:resultId" element={<ResultPage />} />
         <Route path="/pw-find" element={<PwFind />}></Route>
-        <Route path="/myWritings" element={<WritingsPage/>}/>
-        <Route path="/myLikes" element={<LikesPage/>}/>
-        <Route path="/sign-up" element={<SignUp login={false} />}></Route>
-        <Route path="/login" element={<Login login={false} />}></Route>
+        <Route path="/myWritings" element={<WritingsPage />} />
+        <Route path="/myLikes" element={<LikesPage />} />
+        <Route path="/sign-up" element={<SignUp login={login} />}></Route>
+        <Route
+          path="/login"
+          element={<Login login={login} setLogin={setLogin} />}
+        ></Route>
         <Route path="/pw-find" element={<PwFind />}></Route>
         <Route
           path="/community"

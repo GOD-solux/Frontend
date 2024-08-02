@@ -13,6 +13,15 @@ const Wrapper = styled.div`
   flex-direction: column;
 
   gap: 20px;
+
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 8px 10px -5px;
+  }
 `;
 
 const Image = styled.img`
@@ -30,12 +39,34 @@ const Title = styled.div`
   text-align: center;
 `;
 
-function CultureItem() {
+function CultureItem({ culture }) {
   return (
-    <Wrapper>
-      <Image />
-      <Date>2024.07.19 ~ 2024.09.13</Date>
-      <Title>어쩌구저쩌구전시</Title>
+    <Wrapper
+      onClick={() =>
+        culture.url
+          ? window.open(culture.url, "_blank", "noopener, noreferrer")
+          : window.open(
+              "https://tickets.interpark.com/",
+              "_blank",
+              "noopener, noreferrer"
+            )
+      }
+    >
+      <Image src={culture.imageObject} />
+      {/* <Date>{culture.period}</Date> */}
+      <Date>
+        {(() => {
+          switch (culture.category) {
+            case "스포츠":
+              return culture.venue;
+            case "도서":
+              return `${culture.subjectCategory} - ${culture.author}`;
+            default:
+              return culture.period;
+          }
+        })()}
+      </Date>
+      <Title>{culture.title}</Title>
     </Wrapper>
   );
 }

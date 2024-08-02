@@ -1,6 +1,11 @@
 import styled from "styled-components";
 import LikeBtnIcon from "./LikeBtnIcon";
+
+import { userData } from "../../datas/user";
+
 import { useNavigate } from "react-router-dom";
+
+import { useEffect } from "react";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -31,15 +36,32 @@ const RowSection = styled.div`
 `;
 
 const ProfileImage = styled.img`
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
 `;
 
 const PostImage = styled.img`
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   border-radius: 10px;
+`;
+
+const HashTag = styled.div`
+  width: 60px;
+  height: 30px;
+
+  border: none;
+  background-color: #85a1e8;
+  border-radius: 50px;
+  color: white;
+
+  font-size: 13px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
 `;
 
 const LikeBtn = styled.button`
@@ -59,25 +81,37 @@ const LikeBtn = styled.button`
   cursor: pointer;
 `;
 
-function PostItem() {
+function PostItem({ post, onLikeClick }) {
   const navigate = useNavigate();
+  const user = userData.find((v) => v.id === post.userId);
+
+  const likeUp = (e) => {
+    e.stopPropagation();
+    onLikeClick(post.id);
+  };
 
   return (
     <Wrapper onClick={() => navigate("/view-post")}>
       <ColSection>
         <RowSection>
-          <ProfileImage />
+          <ProfileImage src={user.profileImg} />
           <ColSection>
-            <div>닉네임</div>
-            <div>날짜</div>
+            <div>{user.userName}</div>
+            <div>{post.date}</div>
           </ColSection>
         </RowSection>
-        <div>내용</div>
+        <RowSection>
+          {post.hashtag.map((v, i) => (
+            <HashTag key={i}>#{v}</HashTag>
+          ))}
+        </RowSection>
+        <div>{post.title}</div>
       </ColSection>
       <RowSection>
-        <PostImage />
-        <LikeBtn>
-          <LikeBtnIcon />0
+        <PostImage src={post.postImg} />
+        <LikeBtn onClick={likeUp}>
+          <LikeBtnIcon />
+          {post.like}
         </LikeBtn>
       </RowSection>
     </Wrapper>
