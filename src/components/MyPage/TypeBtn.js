@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const StyledBtn = styled.div`
@@ -6,10 +6,10 @@ const StyledBtn = styled.div`
   border-radius: 5px;
   border-width: 2px;
   border-style: solid;
-  border-color: #EFF5FF;
+  border-color: ${props => props.selected ? '#007BFF' : '#EFF5FF'}; /* 선택된 버튼에 강조 표시 */
   width: 6vw;
   height: 4vh;
-  color: black;
+  color: ${props => props.selected ? '#007BFF' : 'black'}; /* 선택된 버튼 텍스트 색상 변경 */
   font-weight: 700;
   font-size: 1.5vh;
   cursor: pointer;
@@ -17,19 +17,15 @@ const StyledBtn = styled.div`
   align-items: center;
   justify-content: center;
   margin-right: 8px; /* 버튼 사이 간격 설정 */
+  transition: background-color 0.3s, border-color 0.3s; /* 부드러운 색상 전환 효과 */
 `;
 
-function TypeBtn({ onClick,selected,children,value }) {
-  // const [backgroundColor, setBackgroundColor] = useState('white');
 
-  // const handleClick = () => {
-  //   setBackgroundColor(backgroundColor === 'white' ? '#EFF5FF' : 'white');
-  // };
-
+function TypeBtn({ onClick, selected, children, value }) {
   return (
     <StyledBtn
       selected={selected}
-      onClick={() => onClick(value)}
+      onClick={() => onClick(value)} // value를 전달하도록 수정
     >
       {children}
     </StyledBtn>
