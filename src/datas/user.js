@@ -20,8 +20,8 @@ export const userData = [
   },
   {
     id: 1,
-    userId: "SakuYa0707",
-    userName: "SakuYa07",
+    userId: "minseo",
+    userName: "minseo",
     profileImg: profile1,
     interesting: ["전시"],
     cultureType: "참여자형",
