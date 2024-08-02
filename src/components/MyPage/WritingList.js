@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 
+import { postDatas as initialPostDatas } from '../../datas/postData';
+
 const Wrapper = styled.div`
   height: 40vh;
   display: flex;
@@ -43,9 +45,9 @@ const DateTime = styled.p`
   color: gray;
 `;
 
-function WritingList({ writings }) {
-  // 최신순으로 정렬
-  const sortedWritings = writings.sort((a, b) => new Date(b.writeDatetime) - new Date(a.writeDatetime));
+function WritingList({ postDatas = initialPostDatas }) {
+  // 배열 복사 후 최신순으로 정렬
+  const sortedWritings = [...postDatas].sort((a, b) => new Date(b.writeDatetime) - new Date(a.writeDatetime));
 
   return (
     <Wrapper>
