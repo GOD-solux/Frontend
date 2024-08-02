@@ -94,7 +94,7 @@ const CultureWrapper=styled.div`
 
 
 
-function ResultPage(){
+function ResultPage(props){
 
 const navigate = useNavigate(); 
 const {resultId}=useParams();
@@ -113,7 +113,7 @@ const handleRecommend2=()=>{
 
     return(
         <Wrapper>
-            <Header text="유형테스트"/>
+            <Header text="유형테스트" login={props.login} setLogin={props.setLogin}/>
             <Container>
                 <ResultBox/>
                   <ReWrapper>

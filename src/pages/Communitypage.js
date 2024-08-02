@@ -66,7 +66,7 @@ const HashTagList = [
   { name: "후기", selected: false },
 ];
 
-function Communitypage({ category }) {
+function Communitypage({ category, props }) {
   const [post, setPost] = useState(postData);
   const [hashtag, setHashtag] = useState(HashTagList);
   const [selectedHashtag, setSelectedHashtag] = useState(null);
@@ -99,7 +99,7 @@ function Communitypage({ category }) {
 
   return (
     <Wrapper>
-      <Header text="커뮤니티" />
+      <Header text="커뮤니티" login={props.login} setLogin={props.setLogin}/>
       <CategoryHeader page="community" category={category} />
 
       <Container>
