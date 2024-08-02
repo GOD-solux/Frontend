@@ -69,15 +69,19 @@ const HashTagList = [
 function Communitypage({ category }) {
   const [post, setPost] = useState(postData);
   const [hashtag, setHashtag] = useState(HashTagList);
+  const [selectedHashtag, setSelectedHashtag] = useState(null);
 
-  const selectedHashtag = (e) => {
-    setHashtag(
-      hashtag.map((v, i) =>
-        i === parseInt(e.target.id)
-          ? { ...v, selected: !v.selected }
-          : { ...v, selected: false }
-      )
+  const selectHashtag = (e) => {
+    const newHashtag = hashtag.map((v, i) =>
+      i === parseInt(e.target.id)
+        ? { ...v, selected: !v.selected }
+        : { ...v, selected: false }
     );
+    setHashtag(newHashtag);
+
+    const selected = newHashtag.find((v) => v.selected);
+
+    setSelectedHashtag(selected ? selected.name : null);
   };
 
   const handlePostLike = (id) => {
@@ -85,6 +89,13 @@ function Communitypage({ category }) {
       post.map((v) => (id === v.id ? { ...v, like: v.like + 1 } : { ...v }))
     );
   };
+
+  const filteredPosts = post.filter((v) => {
+    return (
+      (category === "전체" || v.category === category) &&
+      (!selectedHashtag || v.hashtag.includes(selectedHashtag))
+    );
+  });
 
   return (
     <Wrapper>
@@ -99,18 +110,16 @@ function Communitypage({ category }) {
               style={v.selected ? { backgroundColor: "#e0e9ff" } : {}}
               id={i}
               value={v.name}
-              onClick={selectedHashtag}
+              onClick={selectHashtag}
             >
               #{v.name}
             </HashTagBtn>
           ))}
         </HashTagContainer>
 
-        {post.map((v, i) =>
-          v.category === category || category === "전체" ? (
-            <PostItem key={v.id} post={v} onLikeClick={handlePostLike} />
-          ) : null
-        )}
+        {filteredPosts.map((v) => (
+          <PostItem key={v.id} post={v} onLikeClick={handlePostLike} />
+        ))}
       </Container>
       <WriteBtnIcon />
       <Footer />
