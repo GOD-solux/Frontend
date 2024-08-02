@@ -28,12 +28,18 @@ export const commentData = [
             }
         ]
     },
-    
+
     {
         postId: 2,
         comments: [
             {
                 id: 3,
+                userName: "",
+                content: "",
+                date: "2024.08.01"
+            },
+            {
+                id: 4,
                 userName: "",
                 content: "",
                 date: "2024.08.01"

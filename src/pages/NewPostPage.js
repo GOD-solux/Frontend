@@ -47,7 +47,7 @@ const HashTagWrapper = styled.div`
 const HashTag = styled.button`
     cursor: pointer;
     font-size: 15px;
-    background-color: #EDF1FE;
+    background-color: ${props => (props.active ? '#DEE1EA' : '#EDF1FE')};
     border: none;
     border-radius: 20px;
     padding: 5px 15px;
@@ -84,8 +84,9 @@ const Button = styled.button`
 function NewPostPage(props) {
     const navigate = useNavigate();
 
-    const [title, setTitle] = useState('');
-    const [content, setContent] = useState('');
+    //const [title, setTitle] = useState('');
+    //const [content, setContent] = useState('');
+    const [activeTags, setActiveTags] = useState({});
 
     const handleCancel = () => {
         if (window.confirm('글 작성을 취소하시겠습니까?')) {
@@ -94,8 +95,17 @@ function NewPostPage(props) {
     };
     
     const handleComplete = () => {
-        navigate('/view-post');
+        navigate('/community');
     };
+
+    const toggleHashTag = (tag) => {
+        setActiveTags((prev) => ({
+            ...prev,
+            [tag]: !prev[tag]
+        }));
+    };
+
+    const hashTags = ['#맛집', '#동행', '#비추', '#추천', '#후기'];
 
     return (
         <Wrapper>
@@ -104,20 +114,20 @@ function NewPostPage(props) {
             <TextInput
                 height="40px"
                 maxLength="30"
-                value={title}
-                onChange={(event) => {
-                setTitle(event.target.value);
-                }}
+                //value={title}
+                // onChange={(event) => {
+                //     setTitle(event.target.value);
+                // }}
             />
 
             <Text>내용</Text>
             <TextInput
                 height="300px"
                 maxLength="500"
-                value={content}
-                onChange={(event) => {
-                    setContent(event.target.value);
-                }}
+                //value={content}
+                // onChange={(event) => {
+                //     setContent(event.target.value);
+                // }}
             />
 
             <Text>첨부파일</Text>
@@ -127,11 +137,15 @@ function NewPostPage(props) {
 
             <Text>해시태그</Text>
             <HashTagWrapper>
-                <HashTag>#맛집</HashTag>
-                <HashTag>#동행</HashTag>
-                <HashTag>#비추</HashTag>
-                <HashTag>#추천</HashTag>
-                <HashTag>#후기</HashTag>
+                {hashTags.map(tag => (
+                    <HashTag
+                        key={tag}
+                        active={activeTags[tag]}
+                        onClick={() => toggleHashTag(tag)}
+                    >
+                        {tag}
+                    </HashTag>
+                ))}
             </HashTagWrapper>
 
             <ButtonWrapper>
