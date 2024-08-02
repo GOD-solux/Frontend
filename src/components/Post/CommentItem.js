@@ -36,17 +36,17 @@ const Date = styled.div`
     font-size: 12px;
 `;
 
-function CommentItem() {
+function CommentItem({ userName, content, date }) {
     return(
         <Wrapper>
             <UserContainer>
                 <ProfileImage></ProfileImage>
-                <UserId>user</UserId>
+                <UserId>{userName}</UserId>
             </UserContainer>
 
-            <Content>내용</Content>
+            <Content>{content}</Content>
 
-            <Date>2024/07/00 12:00</Date>
+            <Date>{date}</Date>
         </Wrapper>
     );
 }

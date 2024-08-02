@@ -7,6 +7,11 @@ import CommentItem from "../components/Post/CommentItem";
 import Idcheck from "../assets/idcheck.png"
 import Footer from "../components/Footer";
 
+import { useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+
+import { commentData } from "../datas/comment";
+
 const Wrapper = styled.div`
     width: 100%;
     display: flex;
@@ -88,12 +93,28 @@ const Checkbox = styled.input.attrs({ type: 'checkbox' })`
 `;
 
 function ViewPostPage({ category, login, setLogin }) {
-    //const [comment, setComment] = useState('');
-    //const [isPrivate, setIsPrivate] = useState(false);
+    const location = useLocation();
+    const [post, setPost] = useState(location.state?.post);
+    const [comments, setComments] = useState([]);
+
+    useEffect(() => {
+        if (post) {
+            const postComments = commentData.find(comment => comment.postId === post.id);
+            if (postComments) {
+                setComments(postComments.comments);
+            }
+        }
+    }, [post]);
 
     const handleComplete = () => {
         // 댓글 등록 버튼
         // 비밀댓글 여부
+    };
+
+    const handleLike = () => {
+        if (post) {
+            setPost(prevPost => ({ ...prevPost, like: prevPost.like + 1 }));
+        }
     };
 
     return(
@@ -102,18 +123,18 @@ function ViewPostPage({ category, login, setLogin }) {
             <CategoryHeader category={category}/>
 
             <PostContainer>
-                <ViewPostItem/>
+                <ViewPostItem post={post} onLike={handleLike}/>
             </PostContainer>
 
             <CommentList>
-                <CommentItem/>
-                <CommentItem/>
+                {comments.map(comment => (
+                    <CommentItem key={comment.id} userName={comment.userName} content={comment.content} date={comment.date} />
+                ))}
             </CommentList>
 
             <NewCommentContainer>
                 <TextField
                     placeholder="댓글을 입력하세요."
-                    //value={comment}
                 ></TextField>
                 <Button
                     onClick={handleComplete}

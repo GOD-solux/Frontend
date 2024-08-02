@@ -1,5 +1,7 @@
 import styled from "styled-components";
+
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 import Header from "../components/Header";
 import CategoryHeader from "../components/Community/CategoryHeader";
@@ -97,6 +99,43 @@ function Communitypage({ category , login, setLogin }) {
     );
   });
 
+function Communitypage({ category }) {
+
+  const [post, setPost] = useState(postData);
+  const [hashtag, setHashtag] = useState(HashTagList);
+  const [selectedHashtag, setSelectedHashtag] = useState(null);
+  const navigate = useNavigate();
+
+  const selectHashtag = (e) => {
+    const newHashtag = hashtag.map((v, i) =>
+      i === parseInt(e.target.id)
+        ? { ...v, selected: !v.selected }
+        : { ...v, selected: false }
+    );
+    setHashtag(newHashtag);
+
+    const selected = newHashtag.find((v) => v.selected);
+
+    setSelectedHashtag(selected ? selected.name : null);
+  };
+
+  const handlePostLike = (id) => {
+    setPost(
+      post.map((v) => (id === v.id ? { ...v, like: v.like + 1 } : { ...v }))
+    );
+  };
+
+  const filteredPosts = post.filter((v) => {
+    return (
+      (category === "전체" || v.category === category) &&
+      (!selectedHashtag || v.hashtag.includes(selectedHashtag))
+    );
+  });
+
+  const handleClick = (post) => {
+    navigate('/view-post', { state: { post } });
+  };
+
   return (
     <Wrapper>
       <Header text="커뮤니티" login={login} setLogin={setLogin}/>
@@ -118,7 +157,9 @@ function Communitypage({ category , login, setLogin }) {
         </HashTagContainer>
 
         {filteredPosts.map((v) => (
-          <PostItem key={v.id} post={v} onLikeClick={handlePostLike} />
+          <div key={v.id} onClick={() => handleClick(v)}>
+          <PostItem post={v} onLikeClick={handlePostLike} />
+          </div>
         ))}
       </Container>
       <WriteBtnIcon />
