@@ -297,4 +297,14 @@ export const postData = [
     like: 1,
     postImg: img23,
   },
+  {
+        id : 24,
+        userId: 0,
+        category:"공연",
+        hashtag:["추천"],
+        title: "고척돔 근처에는 맛집 없나요",
+        content: "고척돔은 맛집이 진정 없나요.",
+        like:4,
+        date:"2024-07-31"
+  }
 ];
