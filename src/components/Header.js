@@ -57,6 +57,8 @@ const NomalText = styled.div`
 function Header({ login, text }) {
 
   const navigate = useNavigate();
+
+  console.log(login)
   
   return (
     <Wrapper>
