@@ -54,9 +54,9 @@ const NomalText = styled.div`
   cursor: pointer;
 `;
 
-function Header({ login }) {
+function Header({ login, text }) {
 
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   
   return (
     <Wrapper>

@@ -1,48 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import styled from "styled-components";
 import Box from "../components/Box";
 import Button from "../components/Button";
 import Header from "../components/Header";
-import Id from "../assets/id.png";
-import Pw from "../assets/pw.png";
-import CheckPw from "../assets/check.png";
+import Id from "../assets/TextInputimg/id.png";
+import Pw from "../assets/TextInputimg/pw.png";
+import CheckPw from "../assets/TextInputimg/check.png";
 import TextInput from '../components/TextInput';
-
-const ModalComponent = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.5);
-`;
-
-const ModalContent = styled.div`
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  text-align: center;
-`;
-
-const CloseButton = styled.button`
-  margin-top: 10px;
-  padding: 5px 10px;
-  border: none;
-  background-color: #85a1e8;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #6a8bd8;
-  }
-`;
+import Modal from '../components/Modal';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -126,52 +93,46 @@ const ErrorText = styled.div`
   margin: 5px 0;
 `;
 
+const baseInfo = {
+  id : null,
+  pw: null,
+  name: null,
+  interest: [],
+}
+
 function SignUp(props) {
   const navigate = useNavigate();
  
+  const [userInfo, setUserInfo] = useState(baseInfo);
 
-  const [id, setId] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [name, setName] = useState("");
-  const [interests, setInterests] = useState([]);
-  const [showModal, setShowModal] = useState(false);
-  const [modalMessage, setModalMessage] = useState("");
-  const [error, setError] = useState("");
-  const [pwMatch, setPwMatch] = useState(true);
 
-  const checkIdAvailability = () => {
-    axios
-      .post('http://localhost:3000/auth/sign-up', { id })
-      .then((response) => {
-        if (response.data.available) {
-          setModalMessage("아이디 사용 가능합니다.");
-        } else {
-          setModalMessage("중복된 아이디가 존재합니다.");
-        }
-        setShowModal(true);
-      })
-      .catch((error) => {
-        console.error('중복 확인 오류:', error);
-      });
-  };
+  useEffect(() => {
+    console.log(userInfo)
+    
+  }, [userInfo])
+ 
+   const [confirmPassword, setConfirmPassword] = useState("");
+   const [pwMatch, setPwMatch] = useState(true);
+
+   const [error, setError] = useState("");
+
+   const [showModal, setShowModal] = useState(false);
+   const [modalMessage, setModalMessage] = useState("");
 
   const register = () => {
-    if (password !== confirmPassword) {
+    if (userInfo.pw !== confirmPassword) {
       setPwMatch(false);
       return;
     }
-    if (!name) {
+    if (!userInfo.name) {
       setError("이름은 필수 입력란입니다.");
       return;
     }
+  
 
     axios
       .post('http://localhost:3000/auth/sign-up', {
-        username: name,
-        id: id,
-        password: password,
-        interests: interests,
+        baseInfo
       })
       .then((response) => {
         console.log('회원가입 성공:', response.data);
@@ -181,20 +142,29 @@ function SignUp(props) {
         navigate("/");
       })
       .catch((error) => {
-        console.log(name, id, password, interests);
+        console.log(userInfo.name, userInfo.id, userInfo.pw, userInfo.interest);
         console.error('회원가입 오류:', error.response);
+        setModalMessage("회원가입 오류");
+        setShowModal(true);
       });
   };
 
   const handleInterestClick = (index) => {
-    setInterests(prevInterests => {
-      if (prevInterests.includes(index)) {
-        return prevInterests.filter(i => i !== index);
+    setUserInfo(prevUserInfo => {
+      if (prevUserInfo.interest.includes(index)) {
+        return {
+          ...prevUserInfo,
+          interest: prevUserInfo.interest.filter(i => i !== index),
+        };
       } else {
-        return [...prevInterests, index];
+        return {
+          ...prevUserInfo,
+          interest: [...prevUserInfo.interest, index],
+        };
       }
     });
   };
+
 
   return (
     <Wrapper>
@@ -206,53 +176,53 @@ function SignUp(props) {
             type="text" 
             img={Id} 
             placeholder="아이디"
-            value={id}
-            onChange={(event) => setId(event.target.value)}
-          />
-          <NewButton
-            title="중복확인"
-            onClick={checkIdAvailability}
+            value={userInfo.id}
+            onChange={(event) => setUserInfo({...userInfo, id: event.target.value})}
+            withButton={true}
           />
         </Idarea>
-        <TextInput 
+        
+         <TextInput 
           type="password" 
           img={Pw} 
           placeholder="비밀번호" 
           maxLength={12}
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
+          value={userInfo.pw}
+          onChange={(event) => setUserInfo({...userInfo, pw: event.target.value})}
         />
+        
         <TextInput 
           type="password" 
           img={CheckPw} 
-          placeholder="비밀번호 확인" 
+          placeholder="비밀번호 확인"
           maxLength={12}
           value={confirmPassword}
           onChange={(event) => {
             setConfirmPassword(event.target.value);
-            setPwMatch(event.target.value === password);
+            setPwMatch(event.target.value === userInfo.pw);
           }}
         />
         {!pwMatch && <ErrorText>비밀번호가 일치하지 않습니다.</ErrorText>}
+        
 
         <Divider />
-
+  
         <Text>1. 이름(닉네임) *</Text>
-        <TextInput
-          value={name}
+        <Textarea
+          value={userInfo.name}
           onChange={(event) => {
-            setName(event.target.value);
+            setUserInfo({...userInfo, name: event.target.value});
             setError("");
           }}
         />
         {error && <ErrorText>{error}</ErrorText>}
-
+        
         <Text>2. 관심분야(선택)</Text>
         <ButtonGroup>
           {['공연', '전시', '스포츠', '도서'].map((title, index) => (
             <InterestButton
               key={index}
-              active={interests.includes(index)}
+              active={userInfo.interest.includes(index)}
               title={title}
               onClick={() => handleInterestClick(index)}
             >
@@ -260,7 +230,7 @@ function SignUp(props) {
             </InterestButton>
           ))}
         </ButtonGroup>
-
+        
         <NewButton
           sign
           title="회원가입"
@@ -268,18 +238,9 @@ function SignUp(props) {
         />
       </Box>
 
-      {showModal && (
-        <ModalComponent>
-          <ModalContent>
-            <p>{modalMessage}</p>
-            <CloseButton
-              onClick={() => setShowModal(false)}
-            >
-              확인
-            </CloseButton>
-          </ModalContent>
-        </ModalComponent>
-      )}
+      {showModal && <Modal message={modalMessage} onClick={() => setShowModal(false)}/>}
+
+     
     </Wrapper>
   );
 }
