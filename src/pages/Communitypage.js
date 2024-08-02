@@ -68,38 +68,7 @@ const HashTagList = [
   { name: "후기", selected: false },
 ];
 
-function Communitypage({ category , login, setLogin }) {
-  const [post, setPost] = useState(postData);
-  const [hashtag, setHashtag] = useState(HashTagList);
-  const [selectedHashtag, setSelectedHashtag] = useState(null);
-
-  const selectHashtag = (e) => {
-    const newHashtag = hashtag.map((v, i) =>
-      i === parseInt(e.target.id)
-        ? { ...v, selected: !v.selected }
-        : { ...v, selected: false }
-    );
-    setHashtag(newHashtag);
-
-    const selected = newHashtag.find((v) => v.selected);
-
-    setSelectedHashtag(selected ? selected.name : null);
-  };
-
-  const handlePostLike = (id) => {
-    setPost(
-      post.map((v) => (id === v.id ? { ...v, like: v.like + 1 } : { ...v }))
-    );
-  };
-
-  const filteredPosts = post.filter((v) => {
-    return (
-      (category === "전체" || v.category === category) &&
-      (!selectedHashtag || v.hashtag.includes(selectedHashtag))
-    );
-  });
-
-function Communitypage({ category }) {
+function Communitypage({ category, login, setLogin }) {
 
   const [post, setPost] = useState(postData);
   const [hashtag, setHashtag] = useState(HashTagList);
