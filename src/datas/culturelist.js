@@ -1,12 +1,12 @@
 import performance3 from "../assets/culturelist/performance3.PNG";
 import performance5 from "../assets/culturelist/performance5.PNG";
 
-import exhibition1 from "../assets/culturelist/exhibition1.PNG";
-import exhibition2 from "../assets/culturelist/exhibition2.PNG";
-import exhibition3 from "../assets/culturelist/exhibition3.PNG";
-import exhibition4 from "../assets/culturelist/exhibition4.PNG";
-import exhibition5 from "../assets/culturelist/exhibition5.PNG";
-import exhibition6 from "../assets/culturelist/exhibition6.PNG";
+// import exhibition1 from "../assets/culturelist/exhibition1.PNG";
+// import exhibition2 from "../assets/culturelist/exhibition2.PNG";
+// import exhibition3 from "../assets/culturelist/exhibition3.PNG";
+// import exhibition4 from "../assets/culturelist/exhibition4.PNG";
+// import exhibition5 from "../assets/culturelist/exhibition5.PNG";
+// import exhibition6 from "../assets/culturelist/exhibition6.PNG";
 
 import sports from "../assets/culturelist/sports.PNG";
 import sports1 from "../assets/culturelist/sports1.PNG";
@@ -84,7 +84,7 @@ export const culturelistData = [
     period: "2024-07-06~2024-10-21",
   },
   {
-    catecategorytory: "전시",
+    category: "전시",
     title: "막간 2024: 하룬 파로키‒노동과 훈련",
     imageObject:
       "https://www.mmca.go.kr/upload/exhibition/2024/07/2024072903501629616485.png",
