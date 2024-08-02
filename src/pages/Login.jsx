@@ -115,7 +115,7 @@ const Divider = styled.div`
   background-color: #ccc;
 `;
 
-function Login({setLogin}) {
+function Login() {
   //const { title, onClick, disabled, className } = props;
   const navigate = useNavigate();
   const [id, setId] = useState("");
@@ -138,7 +138,7 @@ function Login({setLogin}) {
       .then((response) => {
         console.log("user token", response.data.jwt);
         localStorage.setItem("token", response.data.jwt);
-        setLogin(true);
+        // setLogin(true);
         navigate("/");
       })
       .catch((error) => {
@@ -147,7 +147,7 @@ function Login({setLogin}) {
         console.log(error);
         setModalMessage("로그인에 실패했습니다. 다시 시도해주세요.");
         setShowModal(true);
-        setLogin(true);
+        // setLogin(true);
         navigate("/mypage");
       });
   };
