@@ -131,11 +131,10 @@ function ViewPostPage({ category, login, setLogin }) {
                     <CommentItem
                         key={comment.id}
                         userName={comment.userName}
-                        //profileImage={comment.profileImage}
+                        profileImage={comment.profileImage}
                         content={comment.content}
                         date={comment.date}
                     />
-                ))}
             </CommentList>
 
             <NewCommentContainer>

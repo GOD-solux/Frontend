@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 
+import { likeDatas as initialLikeDatas } from '../../datas/likeData';
+
 const Wrapper = styled.div`
   height: 40vh;
   display: flex;
@@ -43,19 +45,19 @@ const DateTime = styled.p`
   color: gray;
 `;
 
-function LikesList({likes}) {
+function LikesList({likeDatas=initialLikeDatas}) {
   // 최신순으로 정렬
-  const sortedLikes = likes.sort((a, b) => new Date(b.writeDatetime) - new Date(a.writeDatetime));
+  const sortedLikes = [...likeDatas].sort((a, b) => new Date(b.date) - new Date(a.date));
 
   return (
     <Wrapper>
       {sortedLikes.slice(0, 3).map((like) => (
-        <WritingBox key={like.postId}>
+        <WritingBox key={like.id}>
           <TextWrapper>
-            <H1>{like.postTitle}</H1>
+            <H1>{like.title}</H1>
             <NomalText>{like.nickname}</NomalText>
           </TextWrapper>
-          <DateTime>{like.writeDatetime}</DateTime>
+          <DateTime>{like.date}</DateTime>
         </WritingBox>
       ))}
     </Wrapper>

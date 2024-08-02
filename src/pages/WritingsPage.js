@@ -1,6 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Header from '../components/Header';
+import { useNavigate } from 'react-router-dom';
+
+import { postDatas as initialPostDatas } from '../../src/datas/postData'; // 데이터 파일 경로 확인
 
 const Wrapper = styled.div`
   height: 40vh;
@@ -19,32 +22,32 @@ const WritingBox = styled.div`
   border-radius: 3px;
   display: flex;
   align-items: center;
-  justify-content: space-between; /* 텍스트와 날짜를 양쪽 끝에 배치 */
+  justify-content: space-between;
   margin-bottom: 10px;
-  padding: 10px 20px; /* 좌우 패딩 추가 */
+  padding: 10px 20px;
 `;
 
 const TextWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-right: 20px; /* 텍스트와 날짜 사이의 간격 */
+  margin-right: 20px;
 `;
 
 const Title = styled.h2`
   font-size: 15px;
   font-weight: bold;
-  margin: 5px 0; /* 상하 여백 */
+  margin: 5px 0;
 `;
 
 const Nickname = styled.p`
   font-size: 14px;
-  margin: 7px 0; /* 상하 여백 */
+  margin: 7px 0;
 `;
 
 const DateTime = styled.p`
   font-size: 12px;
   color: gray;
-  margin: 0; /* 상하 여백 제거 */
+  margin: 0;
 `;
 
 const Container = styled.div`
@@ -56,34 +59,30 @@ const Container = styled.div`
   margin-top: 30px;
 `;
 
-function WritingsPage(props) {
-  const [writingList, setWritingList] = useState([]);
+function WritingsPage({ postDatas = initialPostDatas }) {
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    fetch('http://localhost:3000/data/myWritingsData.json', {
-      method: 'GET',
-    })
-      .then(res => res.json())
-      .then(data => {
-        const sortedData = data.sort((a, b) => new Date(b.writeDatetime) - new Date(a.writeDatetime));
-        setWritingList(sortedData);
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      });
-  }, []);
+  // 배열 복사 후 최신순으로 정렬
+  const sortedWritings = [...postDatas].sort((a, b) => new Date(b.date) - new Date(a.date));
+  const [writingList, setWritingList] = useState(sortedWritings);
+
+  const handleClick = (writing) => {
+    // id로 전체 postData에서 해당 게시글 찾기
+    const selectedPost = postDatas.find(post => post.id === writing.id);
+    navigate('/view-post', { state: { post: selectedPost } });
+  };
 
   return (
     <Wrapper>
-      <Header text="내가 작성한 글" login={props.login} setLogin={props.setLogin}/>
+      <Header text="내가 작성한 글" login={true}/>
       <Container>
         {writingList.map((writing) => (
-          <WritingBox key={writing.postId}>
+          <WritingBox key={writing.id} onClick={() => handleClick(writing)}>
             <TextWrapper>
-              <Title>{writing.postTitle}</Title>
-              <Nickname>{writing.nickname}</Nickname>
+              <Title>{writing.title}</Title>
+              <Nickname>{writing.nickname}</Nickname> {/* userId 대신 닉네임으로 바꿔야 할 경우 수정 필요 */}
             </TextWrapper>
-            <DateTime>{writing.writeDatetime}</DateTime>
+            <DateTime>{writing.date}</DateTime>
           </WritingBox>
         ))}
       </Container>
