@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useState } from "react";
 import Header from "../components/Header";
 import Swiper from "../components/Mainpage/SwipeBanner";
 import Search from "../assets/Mainpage/search.png";
@@ -179,12 +180,17 @@ function Mainpage(props) {
 
   const { title, className } = props;
 
+  const [word, setWord] = useState("");
+  const onSubmit = async() => {
+      window.location.href = "/culturelist/" + word;
+  };
+
   return (
     <Wrapper>
       <Header login={props.login} setLogin={props.setLogin}/>
       <SearchBar>
-        <input type="search" placeholder="search..." />
-        <img src={Search} alt="search" />
+        <input type="search" placeholder="search..." onChange={(e) => {setWord(e.target.value)}}/>
+        <img src={Search} alt="search" onClick={() => {onSubmit()}}/>
       </SearchBar>
 
       <CardContainer1>

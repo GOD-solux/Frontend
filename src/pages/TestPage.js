@@ -56,7 +56,7 @@ const Picture=styled.img`
     // border-radius: 50%;
 `;
 
-function TestPage() {
+function TestPage(props) {
   const navigate = useNavigate();
   const { questionNumber } = useParams();
   const [selectedAnswer, setSelectedAnswer] = useState(null);
@@ -86,7 +86,7 @@ function TestPage() {
 
   return (
     <Wrapper>
-      <Header text="유형테스트"/>
+      <Header text="유형테스트" login={props.login} setLogin={props.setLogin}/>
       <Container>
         <Question>{questions[questionNumber]}</Question>
         <Picture src={imgs[1]} alt="pic" />
