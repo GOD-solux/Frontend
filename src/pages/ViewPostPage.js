@@ -128,8 +128,13 @@ function ViewPostPage({ category, login, setLogin }) {
 
             <CommentList>
                 {comments.map(comment => (
-                    <CommentItem key={comment.id} userName={comment.userName} content={comment.content} date={comment.date} />
-                ))}
+                    <CommentItem
+                        key={comment.id}
+                        userName={comment.userName}
+                        profileImage={comment.profileImage}
+                        content={comment.content}
+                        date={comment.date}
+                    />
             </CommentList>
 
             <NewCommentContainer>
