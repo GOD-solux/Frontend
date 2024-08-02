@@ -43,6 +43,7 @@ const SlideImage = styled.img`
   width: 100%; 
   height: 100%; 
   object-fit: cover; 
+  cursor: pointer;
 `;
 
 function SwipeBanner() {
@@ -62,16 +63,24 @@ function SwipeBanner() {
         loop={true}
       >
         <SwiperSlide>
-          <SlideImage src={A} alt="Slide 1" />
+          <SlideImage 
+            src={A} alt="Slide 1"
+            onClick={() => window.open("https://tickets.interpark.com/goods/24005266", "_blank", "noopener, noreferrer")}/>
         </SwiperSlide>
         <SwiperSlide>
-          <SlideImage src={B} alt="Slide 2" />
+          <SlideImage 
+            src={B} alt="Slide 2"
+            onClick={() => window.open("https://mticket.lotteworld.com/web/pdt/productList.do?ei_gsber=1240&ei_bukrs=1200", "_blank", "noopener, noreferrer")}/>
         </SwiperSlide>
         <SwiperSlide>
-          <SlideImage src={C} alt="Slide 3" />
+          <SlideImage 
+            src={C} alt="Slide 3" 
+            onClick={() => window.open("https://tickets.interpark.com/goods/24010956", "_blank", "noopener, noreferrer")}/>
         </SwiperSlide>
         <SwiperSlide>
-          <SlideImage src={D} alt="Slide 4" />
+          <SlideImage 
+            src={D} alt="Slide 4" 
+            onClick={() => window.open("https://travel.interpark.com/tna/products/f6f9c199-9410-4321-a3c8-b99192639895?startDate=2024-08-02&endDate=2025-08-02", "_blank", "noopener, noreferrer")}/>
         </SwiperSlide>
       </Swiper>
     </>
