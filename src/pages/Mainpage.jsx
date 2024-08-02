@@ -1,15 +1,18 @@
 import styled from "styled-components";
+import { useState } from "react";
 import Header from "../components/Header";
 import Swiper from "../components/Mainpage/SwipeBanner";
-import Search from "../assets/search.png";
+import Search from "../assets/Mainpage/search.png";
 import Card from "../components/Mainpage/Card";
-import Performance from "../assets/performance.jpg";
-import Exhibit from "../assets/exhibit.png";
-import Sport from "../assets/sport.jpg";
-import Book from "../assets/book.jpg";
-import Community from "../assets/community.png";
-import Typetest from "../assets/typetest.png";
+import Performance from "../assets/Mainpage/performance.jpg";
+import Exhibit from "../assets/Mainpage/exhibit.png";
+import Sport from "../assets/Mainpage/sport.jpg";
+import Book from "../assets/Mainpage/book.jpg";
+import Community from "../assets/Mainpage/community.png";
+import Typetest from "../assets/Mainpage/typetest.png";
 import Footer from "../components/Footer";
+
+import { culturelistData } from "../datas/culturelist";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -17,13 +20,12 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 22px;
-  height: 700px;
 `;
 
 const SearchBar = styled.form`
   border: 2px solid #ACACAC; 
   border-radius: 50px;
-  width: 93%;
+  width: 95%;
   height: 45px;
   font-size: 20px;
   font-weight: 500;
@@ -134,7 +136,7 @@ const MCard = styled(Card)`
 
 
 const CardContainer1 = styled.div`
-  width: 90%;
+  width: 95%;
   display: flex;
   justify-content: center;
   gap: 25px;
@@ -142,14 +144,13 @@ const CardContainer1 = styled.div`
 
 
 const CardContainer2 = styled.div`
-  width: 90%;
+  width: 95%;
   display: flex;
-  justify-content: center;
-  gap: 50px;
+  justify-content: space-between;
 `;
 
 const CardContainer3 = styled.div`
-  width: 90%;
+  width: 95%;
   display: flex;
   justify-content: center;
   gap: 30px;
@@ -173,7 +174,7 @@ const Divider = styled.div`
 const Line = styled.div`
   display: flex;
   align-items: center;
-  width: 90%;
+  width: 95%;
   gap: 10px;
 `;
 
@@ -181,18 +182,69 @@ function Mainpage(props) {
 
   const { title, className } = props;
 
+  // const [word, setWord] = useState("");
+  // const onSubmit = async() => {
+  //     window.location.href = "/culturelist/" + word;
+  // };
+
+  // 검색어 및 결과를 저장할 상태
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredData, setFilteredData] = useState([]);
+  const [isSearchSubmitted, setIsSearchSubmitted] = useState(false);
+
+  // 검색어 입력시 호출되는 함수
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  // 검색 버튼 클릭시 호출되는 함수
+  const handleSearchClick = () => {
+    const results = culturelistData.filter((item) =>
+      item.title.includes(searchTerm)
+    );
+    setFilteredData(results);
+    setIsSearchSubmitted(true); // 검색이 제출됨을 표시
+  };
+
+  // 폼 제출 방지
+  // const onSubmit = (e) => {
+  //   e.preventDefault(); 
+  //   handleSearchClick(); // 검색 버튼 클릭 핸들러 호출
+  // };
+
   return (
     <Wrapper>
-      <Header />
+      <Header login={props.login} setLogin={props.setLogin}/>
       <SearchBar>
-        <input type="search" placeholder="search..." />
-        <img src={Search} alt="search" />
+        <input type="search" placeholder="search..." value={searchTerm}
+          onChange={handleSearchChange}/>
+        <img src={Search} alt="search" onClick={handleSearchClick} />
       </SearchBar>
 
+      {/* 검색 결과 표시 */}
+      <div style={{width:'95%'}}>
+        {isSearchSubmitted ? (
+          filteredData.length > 0 ? (
+            filteredData.map((item, index) => (
+              <div key={index} style={{ marginBottom: '10px' }}>
+                <a href={item.url || "https://www.interpark.com"} 
+                target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'black' }}>
+                  <h4>{item.category} | {item.title}</h4>
+                </a>
+              </div>
+            ))
+          ) : (
+            <p>해당하는 문화가 없습니다.</p>
+          )
+        ) : null}
+      </div>
+
+
+      
       <CardContainer1>
         <UCard 
           bcolor="#85A1E8" tcolor="white" nav="/community" title="문화 커뮤니티" bimg={Community} />
-        <UCard bcolor="#E0E9FF" tcolor="black" nav="/typeTest/ing" title="문화 유형 테스트" bimg={Typetest} />
+        <UCard bcolor="#E0E9FF" tcolor="black" nav="/typeTest/1" title="문화 유형 테스트" bimg={Typetest} />
       </CardContainer1>
       
       <Line>
@@ -200,19 +252,19 @@ function Mainpage(props) {
         <Divider />
       </Line>
       <CardContainer2>
-        <MCard nav="/community/:performance"
+        <MCard nav="/culturelist/performance"
           title="공연"
           bimg={Performance}
         />
-        <MCard nav="/community/:exhibition" 
+        <MCard nav="/culturelist/exhibition" 
           title="전시"
           bimg={Exhibit}
         />
-        <MCard nav="/community/:sport" 
+        <MCard nav="/culturelist/sport" 
           title="스포츠"
           bimg={Sport}
         />
-        <MCard nav="/community/:book" 
+        <MCard nav="/culturelist/book" 
           title="도서"
           bimg={Book}
         />

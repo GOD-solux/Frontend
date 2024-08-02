@@ -14,14 +14,16 @@ const StyleButton = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    white-space: nowrap;
 
 `;
 
 function Button(props){
-    const { title, onClick, disabled, className } = props;
+    const { title, onClick, disabled, className, width, height, borderRadius, fontSize } = props;
 
     return(
         <StyleButton
+            style={{width, height, borderRadius, fontSize}}
             className={className}
             onClick={onClick}
             disabled={disabled}>

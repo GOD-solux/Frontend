@@ -1,14 +1,15 @@
 import styled from "styled-components";
-<<<<<<< Updated upstream
-=======
+
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
->>>>>>> Stashed changes
 import Header from "../components/Header";
 import CategoryHeader from "../components/Community/CategoryHeader";
 import PostItem from "../components/Community/PostItem";
 import WriteBtnIcon from "../components/Community/WriteBtnIcon";
+import Footer from "../components/Footer";
+
+import { postData } from "../datas/post";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -21,7 +22,6 @@ const Wrapper = styled.div`
   position: relative;
 
   //페이지넘버 설정을 위한 임시 padding-bottom
-  padding-bottom: 100px;
 `;
 
 const Container = styled.div`
@@ -54,13 +54,53 @@ const HashTagBtn = styled.button`
   font-size: 16px;
 
   cursor: pointer;
+
+  &:hover {
+    background-color: #e0e9ff;
+  }
 `;
 
-const HashTagList = ["맛집", "동행", "비추", "추천", "후기"];
+const HashTagList = [
+  { name: "맛집", selected: false },
+  { name: "동행", selected: false },
+  { name: "비추", selected: false },
+  { name: "추천", selected: false },
+  { name: "후기", selected: false },
+];
+
+function Communitypage({ category , login, setLogin }) {
+  const [post, setPost] = useState(postData);
+  const [hashtag, setHashtag] = useState(HashTagList);
+  const [selectedHashtag, setSelectedHashtag] = useState(null);
+
+  const selectHashtag = (e) => {
+    const newHashtag = hashtag.map((v, i) =>
+      i === parseInt(e.target.id)
+        ? { ...v, selected: !v.selected }
+        : { ...v, selected: false }
+    );
+    setHashtag(newHashtag);
+
+    const selected = newHashtag.find((v) => v.selected);
+
+    setSelectedHashtag(selected ? selected.name : null);
+  };
+
+  const handlePostLike = (id) => {
+    setPost(
+      post.map((v) => (id === v.id ? { ...v, like: v.like + 1 } : { ...v }))
+    );
+  };
+
+  const filteredPosts = post.filter((v) => {
+    return (
+      (category === "전체" || v.category === category) &&
+      (!selectedHashtag || v.hashtag.includes(selectedHashtag))
+    );
+  });
 
 function Communitypage({ category }) {
-<<<<<<< Updated upstream
-=======
+
   const [post, setPost] = useState(postData);
   const [hashtag, setHashtag] = useState(HashTagList);
   const [selectedHashtag, setSelectedHashtag] = useState(null);
@@ -96,33 +136,34 @@ function Communitypage({ category }) {
     navigate('/view-post', { state: { post } });
   };
 
->>>>>>> Stashed changes
   return (
     <Wrapper>
-      <Header />
+      <Header text="커뮤니티" login={login} setLogin={setLogin}/>
       <CategoryHeader page="community" category={category} />
+
       <Container>
         <HashTagContainer>
-          {HashTagList.map((v, i) => (
-            <HashTagBtn key={i}>#{v}</HashTagBtn>
+          {hashtag.map((v, i) => (
+            <HashTagBtn
+              key={i}
+              style={v.selected ? { backgroundColor: "#e0e9ff" } : {}}
+              id={i}
+              value={v.name}
+              onClick={selectHashtag}
+            >
+              #{v.name}
+            </HashTagBtn>
           ))}
         </HashTagContainer>
-<<<<<<< Updated upstream
-        <PostItem />
-        <PostItem />
-        <PostItem />
-        <PostItem />
-        <PostItem />
-=======
 
         {filteredPosts.map((v) => (
           <div key={v.id} onClick={() => handleClick(v)}>
           <PostItem post={v} onLikeClick={handlePostLike} />
           </div>
         ))}
->>>>>>> Stashed changes
       </Container>
       <WriteBtnIcon />
+      <Footer />
     </Wrapper>
   );
 }

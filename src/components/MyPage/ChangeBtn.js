@@ -18,10 +18,10 @@ const StyledBtn = styled.div`
     justify-content: center;
 `;
 
-// 비밀번호 변경
-function ChangeBtn({children}) {
+// 비밀번호 변경 //관심분야 수정
+function ChangeBtn({children,onClick}) {
     return (
-        <StyledBtn>{children}</StyledBtn>
+        <StyledBtn onClick={onClick}>{children}</StyledBtn>
     );
 }
 

@@ -1,52 +1,63 @@
 import styled from "styled-components";
-import PlusBtn from "../MyPage/PlusBtn";
+import { useEffect, useState } from "react";
 
-// MyPage에서만 추가해도 될듯, MyPage 완성되면 없애기. 
 const Wrapper = styled.div`
   height: 40vh;
   display: flex;
   width: 100%;
-  justify-content: space-between;
   flex-direction: column;
-  margin-top: 30px;
+  margin-top: 15px;
   gap: 5px;
 `;
 
-const HeaderWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const TypeBox = styled.div`
+const WritingBox = styled.div`
   height: 50%;
   background-color: #eeeeee;
   display: flex;
-  width: 100%;
-  border-radius: 3px;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-radius: 3px;
+`;
+
+const TextWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 const H1 = styled.h1`
+  font-size: 15px;
   font-weight: bold;
-  font-size: 14px;
-  margin-bottom: 7px;
+  margin: 5px;
 `;
 
-const NomalText = styled.div``;
+const NomalText = styled.p`
+  font-size: 14px;
+  margin: 7px;
+`;
 
-// 문화 유형 매핑해줘야. 
-function WritingList({ children, myWritings }) {
+const DateTime = styled.p`
+  font-size: 12px;
+  margin: 0;
+  color: gray;
+`;
+
+function WritingList({ writings }) {
+  // 최신순으로 정렬
+  const sortedWritings = writings.sort((a, b) => new Date(b.writeDatetime) - new Date(a.writeDatetime));
+
   return (
     <Wrapper>
-      <HeaderWrapper>
-        <H1>{children}</H1>
-        <PlusBtn>더 보기</PlusBtn>
-      </HeaderWrapper>
-      <TypeBox>게시글1</TypeBox>
-      <TypeBox>게시글2</TypeBox>
-      <TypeBox>게시글3</TypeBox>
+      {sortedWritings.slice(0, 3).map((writing) => (
+        <WritingBox key={writing.postId}>
+          <TextWrapper>
+            <H1>{writing.postTitle}</H1>
+            <NomalText>{writing.nickname}</NomalText>
+          </TextWrapper>
+          <DateTime>{writing.writeDatetime}</DateTime>
+        </WritingBox>
+      ))}
     </Wrapper>
   );
 }

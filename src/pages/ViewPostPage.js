@@ -92,7 +92,7 @@ const Checkbox = styled.input.attrs({ type: 'checkbox' })`
     }
 `;
 
-function ViewPostPage({ category }) {
+function ViewPostPage({ category, login, setLogin }) {
     const location = useLocation();
     const [post, setPost] = useState(location.state?.post);
     const [comments, setComments] = useState([]);
@@ -119,8 +119,8 @@ function ViewPostPage({ category }) {
 
     return(
         <Wrapper>
-            <Header text="커뮤니티" />
-            <CategoryHeader category={category} />
+            <Header text="커뮤니티" login={login} setLogin={setLogin}/>
+            <CategoryHeader category={category}/>
 
             <PostContainer>
                 <ViewPostItem post={post} onLike={handleLike}/>

@@ -1,0 +1,57 @@
+[
+    {
+        "postId": 1,
+        "postTitle": "뮤지컬 예매 꿀팁 알려드려요",
+        "nickname":"musical",
+        "writeDatetime":"2024-07-30"
+    },
+    {
+        "postId": 2,
+        "postTitle": "시카고 후기",
+        "nickname":"chicagolover",
+        "writeDatetime":"2024-07-19"
+    },
+    {
+        "postId": 3,
+        "postTitle": "데드풀과 울버린 영화 후기",
+        "nickname":"byebyebye",
+        "writeDatetime":"2024-07-10"
+    },
+    {
+        "postId": 4,
+        "postTitle": "공연볼 때 주의해야할 점 ! ",
+        "nickname":"hi",
+        "writeDatetime":"2024-07-31"
+    },
+    {
+        "postId": 5,
+        "postTitle": "야구 현 순위",
+        "nickname":"yabba",
+        "writeDatetime":"2024-07-01"
+    },
+    {
+        "postId": 6,
+        "postTitle": "진짜 기대많이 되는 뮤지컬",
+        "nickname":"123456",
+        "writeDatetime":"2024-06-20"
+    },
+    {
+        "postId": 7,
+        "postTitle": "야구장가서 이거 꼭 드세요",
+        "nickname":"yabbbbba",
+        "writeDatetime":"2024-06-19"
+    },
+    {
+        "postId": 8,
+        "postTitle": "공연 볼 때 매너좀 지켜주세요",
+        "nickname":"angry",
+        "writeDatetime":"2024-04-20"
+    },
+    {
+        "postId": 9,
+        "postTitle": "보다가 중간에 나온 공연",
+        "nickname":"hey",
+        "writeDatetime":"2024-03-20"
+    }
+
+]
