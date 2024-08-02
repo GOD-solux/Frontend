@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import Header from '../components/Header';
 import { useNavigate } from 'react-router-dom';
 
+import { postData } from "../datas/post";
+
 const Wrapper = styled.div`
   height: 40vh;
   display: flex;
@@ -60,6 +62,7 @@ const Container = styled.div`
 function WritingsPage(props) {
   const [writingList, setWritingList] = useState([]);
   const navigate = useNavigate();
+  const [post, setPost] = useState(postData);
 
   useEffect(() => {
     fetch('http://localhost:3000/data/myWritingsData.json', {
@@ -75,13 +78,13 @@ function WritingsPage(props) {
       });
   }, []);
 
-    const handleClick = (post) => {
-      navigate('/view-post', { state: { post } });
+    const handleClick = (writing) => {
+      navigate('/view-post', { state: { writing } });
     };
 
   return (
     <Wrapper>
-      <Header text="내가 작성한 글" login={props.login} setLogin={props.setLogin}/>
+      <Header text="내가 작성한 글" login={true}/>
       <Container>
         {writingList.map((writing) => (
           <WritingBox key={writing.id} onClick={()=>handleClick(writing)}>
