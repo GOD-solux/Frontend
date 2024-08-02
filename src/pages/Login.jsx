@@ -115,7 +115,7 @@ const Divider = styled.div`
   background-color: #ccc;
 `;
 
-function Login() {
+function Login({setLogin}) {
   //const { title, onClick, disabled, className } = props;
   const navigate = useNavigate();
   const [id, setId] = useState("");
@@ -147,8 +147,8 @@ function Login() {
         console.log(error);
         setModalMessage("로그인에 실패했습니다. 다시 시도해주세요.");
         setShowModal(true);
-        // setLogin(true);
-        navigate("/mypage");
+        setLogin(true);
+        navigate("/");
       });
   };
 

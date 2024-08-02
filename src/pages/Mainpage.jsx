@@ -181,7 +181,7 @@ function Mainpage(props) {
 
   return (
     <Wrapper>
-      <Header />
+      <Header login={props.login}/>
       <SearchBar>
         <input type="search" placeholder="search..." />
         <img src={Search} alt="search" />
