@@ -1,6 +1,11 @@
 import styled from "styled-components";
 import LikeBtnIcon from "./LikeBtnIcon";
+
+import { userData } from "../../datas/user";
+
 import { useNavigate } from "react-router-dom";
+
+import { useEffect } from "react";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -59,25 +64,28 @@ const LikeBtn = styled.button`
   cursor: pointer;
 `;
 
-function PostItem() {
+function PostItem({ post }) {
   const navigate = useNavigate();
+  const user = userData.find((v) => v.id === post.userId);
+  console.log(user);
 
   return (
     <Wrapper onClick={() => navigate("/view-post")}>
       <ColSection>
         <RowSection>
-          <ProfileImage />
+          <ProfileImage src={user.profileImg} />
           <ColSection>
-            <div>닉네임</div>
-            <div>날짜</div>
+            <div>{user.userName}</div>
+            <div>{post.date}</div>
           </ColSection>
         </RowSection>
-        <div>내용</div>
+        <div>{post.title}</div>
       </ColSection>
       <RowSection>
         <PostImage />
         <LikeBtn>
-          <LikeBtnIcon />0
+          <LikeBtnIcon />
+          {post.like}
         </LikeBtn>
       </RowSection>
     </Wrapper>

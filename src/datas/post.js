@@ -1,0 +1,32 @@
+export const postData = [
+  {
+    id: 0,
+    userId: 0,
+    catetory: "공연",
+    hashtag: ["추천", "후기"],
+    date: "2024.07.22",
+    title: "프리다보러감!",
+    content: "김소향 대박임",
+    like: 0,
+  },
+  {
+    id: 1,
+    userId: 1,
+    catetory: "전시",
+    hashtag: [],
+    date: "2024.07.24",
+    title: "전시보러감!",
+    content: "너무 더웠어",
+    like: 0,
+  },
+  {
+    id: 2,
+    userId: 2,
+    catetory: "도서",
+    hashtag: ["후기"],
+    date: "2024.07.25",
+    title: "김초엽 신작",
+    content: "파견자들 강추합니다",
+    like: 0,
+  },
+];

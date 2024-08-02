@@ -1,9 +1,13 @@
 import styled from "styled-components";
+import { useState } from "react";
+
 import Header from "../components/Header";
 import CategoryHeader from "../components/Community/CategoryHeader";
 import PostItem from "../components/Community/PostItem";
 import WriteBtnIcon from "../components/Community/WriteBtnIcon";
 import Footer from "../components/Footer";
+
+import { postData } from "../datas/post";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -53,6 +57,8 @@ const HashTagBtn = styled.button`
 const HashTagList = ["맛집", "동행", "비추", "추천", "후기"];
 
 function Communitypage({ category }) {
+  const [post, setPost] = useState(postData);
+
   return (
     <Wrapper>
       <Header text="커뮤니티" />
@@ -63,11 +69,9 @@ function Communitypage({ category }) {
             <HashTagBtn key={i}>#{v}</HashTagBtn>
           ))}
         </HashTagContainer>
-        <PostItem />
-        <PostItem />
-        <PostItem />
-        <PostItem />
-        <PostItem />
+        {post.map((v, i) => (
+          <PostItem key={v.id} post={v} />
+        ))}
       </Container>
       <WriteBtnIcon />
       <Footer />
