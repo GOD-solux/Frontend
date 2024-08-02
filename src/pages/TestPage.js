@@ -89,7 +89,7 @@ function TestPage() {
       <Header text="유형테스트"/>
       <Container>
         <Question>{questions[questionNumber]}</Question>
-        <Picture src={imgs[questionNumber]} alt="pic" />
+        <Picture src={imgs[1]} alt="pic" />
         <ButtonWrapper>
           <AnswerBtn
             onClick={() => handleAnswerClick('yes')}

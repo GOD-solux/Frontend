@@ -1,7 +1,8 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import styled from 'styled-components';
 import TypeBtn from './TypeBtn.js'; // TypeBtn 컴포넌트 import
 import ChangeBtn from './ChangeBtn';
+import Modal from './Modal.js';
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -56,8 +57,15 @@ const ButtonWrapper = styled.div`
 
 `;
 
-function MyProfile() {
+function MyProfile({memberId,nickname,type}) {
   const [selectedTypes,setSelectedTypes]=useState([]);
+  const navigate = useNavigate(); 
+  const [modalOpen,setModalOpen]=useState(false);
+
+
+  useEffect(() => {
+    setSelectedTypes(type);
+  }, [type]);
 
   const handleTypeClick=(type)=>{
     if(selectedTypes.includes(type)){
@@ -67,33 +75,42 @@ function MyProfile() {
       // 스프레드 연산자(...) -> selectedTypes 배열의 모든 항목과 새로운 type을 포함하는 새로운 배열을 만듦
       setSelectedTypes([...selectedTypes,type]);
     }
+
+
   };
 
   const handleFixClick = () => {
     console.log(selectedTypes);
+    setSelectedTypes([...selectedTypes,type]);
+    setModalOpen(true);
   };
 
-  //비밀번호 변경
-  // const handlePWclick=()=>{
-  //     navigate(`/pw-find`);
-  // };
+
+  const handleModalClose = () => {
+    setModalOpen(false); // 모달 닫기
+  };
+
+  // 비밀번호 변경
+  const handlePWclick=()=>{
+      navigate(`/pw-find`);
+  };
 
   return (
     <Wrapper>
       <FieldWrapper>
         <Label>아이디</Label>
-        <LongBox>solux123</LongBox>
+        <LongBox>{memberId}</LongBox>
       </FieldWrapper>
       <FieldWrapper>
         <Label>비밀번호</Label>
-        <LongBox></LongBox>
+        <LongBox>⦁⦁⦁⦁⦁⦁⦁⦁⦁⦁⦁</LongBox>
           <ChangeBtn
-            // onClick={handlePWclick} //비밀번호 변경
+            onClick={handlePWclick} //비밀번호 변경
           >비밀번호 변경</ChangeBtn>
       </FieldWrapper>
       <FieldWrapper>
         <Label>이름(닉네임)</Label>
-        <LongBox>solux123</LongBox>
+        <LongBox>{nickname}</LongBox>
       </FieldWrapper>
       <FieldWrapper>
         <Label>관심 분야</Label>
@@ -119,6 +136,12 @@ function MyProfile() {
           onClick={handleFixClick}
         >수정</ChangeBtn>
       </FieldWrapper>
+      {modalOpen && (
+        <Modal
+          message="수정 완료 되었습니다."
+          onClose={handleModalClose}
+        />
+      )}
     </Wrapper>
   );
 }

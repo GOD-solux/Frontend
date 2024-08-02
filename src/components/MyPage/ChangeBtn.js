@@ -18,7 +18,7 @@ const StyledBtn = styled.div`
     justify-content: center;
 `;
 
-// 비밀번호 변경
+// 비밀번호 변경 //관심분야 수정
 function ChangeBtn({children,onClick}) {
     return (
         <StyledBtn onClick={onClick}>{children}</StyledBtn>

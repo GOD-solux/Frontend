@@ -1,5 +1,5 @@
 // MyPage.js
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import styled from "styled-components";
 import Header from "../components/Header";
 import MyProfile from "../components/MyPage/MyProfile";
@@ -9,6 +9,8 @@ import MyCulture from "../components/MyPage/MyCulture";
 import WritingList from "../components/MyPage/WritingList";
 import PlusBtn from "../components/MyPage/PlusBtn";
 import { useNavigate } from 'react-router-dom';
+
+import {userData} from '../datas/user';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -93,6 +95,36 @@ const H1 = styled.h1`
 function MyPage(props) {
   const navigate = useNavigate(); 
   const [image, setImage] = useState(profileImage);
+  const [myProfile,setMyProfile]=useState([]);
+  const [myCulture,setMyCulture]=useState([]);
+  const [writingList,setWritingList]=useState([]);
+
+ 
+  //프로필정보,나의 문화유형(mock data)
+  useEffect(()=>{
+    fetch('http://localhost:3000/data/myPageData.json',{
+      method:'GET',
+  })
+    .then(res=>res.json())
+    .then(data=>{
+      setMyProfile(data);
+      setMyCulture(data);
+    });
+  },[]);
+
+
+  //내가 쓴 글 목록, 공감한 글 목록 (mock data)
+  useEffect(()=>{
+    fetch('http://localhost:3000/data/myWritingsData.json',{
+      method:'GET',
+  })
+    .then(res=>res.json())
+    .then(data=>{
+      setWritingList(data);
+    });
+  },[]);
+
+ 
 
   //프로필 사진 수정
   const handleProfileClick = (e) => {
@@ -111,9 +143,11 @@ function MyPage(props) {
     navigate(`/myLikes`);
   };
 
+
+
   return (
     <Wrapper>
-      <Header text="마이페이지" login={props.login} setLogin={props.setLogin} />
+      <Header text="마이페이지" login={true} />
       <ProfileWrapper>
         <ProfileImageWrapper>
           <ProfileImage className="profile-image" src={image} alt="Profile" />
@@ -127,11 +161,23 @@ function MyPage(props) {
             onChange={handleProfileClick}
           />
         </ProfileImageWrapper>
-        <MyProfile />
+        {myProfile.map(p=>(
+          <MyProfile 
+            key={p.id}
+            memberId={p.memberId}
+            nickname={p.nickname}
+            type={p.type}
+          />
+        ))}
       </ProfileWrapper>
       <Hr />
       <CultureWrapper>
-        <MyCulture />
+        {myCulture.map(p=>(
+          <MyCulture
+            key={p.id}
+            muntourType={p.muntourType}
+          />
+        ))}
       </CultureWrapper>
       <WritingsWrapper>
         <WritingWrapper>
@@ -139,14 +185,16 @@ function MyPage(props) {
             <H1>내가 쓴 글 목록</H1>
             <PlusBtn onClick={handleWritings}>더 보기</PlusBtn>
           </HeaderWrapper>
-          <WritingList />
+          <WritingList writings={writingList} />
+          
+
         </WritingWrapper>
         <WritingWrapper>
           <HeaderWrapper>
             <H1>공감한 글 목록</H1>
             <PlusBtn onClick={handleLikes}>더 보기</PlusBtn>
           </HeaderWrapper>
-          <WritingList />
+          <WritingList writings={writingList} /> 
         </WritingWrapper>
       </WritingsWrapper>
     </Wrapper>

@@ -1,44 +1,62 @@
 import styled from "styled-components";
 import PlusBtn from "../MyPage/PlusBtn";
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from "react";
 
-import {useNavigate} from 'react-router-dom';
-
-
-// MyPage에서만 추가해도 될듯, MyPage 완성되면 없애기. 
 const Wrapper = styled.div`
   height: 40vh;
   display: flex;
   width: 100%;
-  // justify-content: space-between;
   flex-direction: column;
   margin-top: 15px;
   gap: 5px;
 `;
 
-
 const WritingBox = styled.div`
   height: 50%;
   background-color: #eeeeee;
   display: flex;
-  width: 100%;
-  border-radius: 3px;
+  flex-direction: row; /* 수평 정렬 */
   align-items: center;
-  justify-content: center;
+  justify-content: space-between; /* 공간을 양쪽으로 나누기 */
+  padding: 10px;
+  border-radius: 3px;
 `;
 
+const TextWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
-const NomalText = styled.div``;
+const H1 = styled.h1`
+  font-size: 20px;
+  font-weight: bold;
+  margin: 5px;
+`;
 
-// 문화 유형 매핑해줘야. 
-function WritingList({ children, myWritings }) {
+const NomalText = styled.p`
+  font-size: 14px;
+  margin: 7px;
+`;
 
+const DateTime = styled.p`
+  font-size: 12px;
+  margin: 0;
+  color: gray; 
+`;
 
-
+function WritingList({ writings }) {
   return (
     <Wrapper>
-      <WritingBox>게시글1</WritingBox>
-      <WritingBox>게시글2</WritingBox>
-      <WritingBox>게시글3</WritingBox>
+      {writings.slice(0, 3).map((writing) => (
+        <WritingBox key={writing.postId}>
+          <TextWrapper>
+            <H1>{writing.postTitle}</H1>
+            <NomalText>{writing.nickname}</NomalText>
+          </TextWrapper>
+          <DateTime>{writing.writeDatetime}</DateTime>
+        </WritingBox>
+      ))}
     </Wrapper>
   );
 }
