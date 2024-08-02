@@ -39,13 +39,13 @@ const CultureImage = styled.img`
 // <ResultImage src={images[resultId]} alt="types" />
 
 
-function MyCulture() {
+function MyCulture({muntourType}) {
   return (
     <Wrapper>
       <H1>나의 문화 유형</H1>
       <TypeBox>
-        <CultureImage src={myType['B']} alt="CultureType" />
-        <div dangerouslySetInnerHTML={{ __html: explain['A']}} />
+        <CultureImage src={myType[muntourType]} alt="CultureType" />
+        <div dangerouslySetInnerHTML={{ __html: explain[muntourType]}} />
       </TypeBox>
     </Wrapper>
   );

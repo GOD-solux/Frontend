@@ -15,17 +15,6 @@ export const questions = {
 };
 
 
-// export const questionMapping = {
-//   1: [2,4],
-//   2: [3,5],
-//   3: [6,5],
-//   4: [7,5],
-//   5: [8,6],
-//   6: [9,8],
-//   7: ['A',8],
-//   8: ['B', 9 ], 
-//   9: ['C','B' ]
-// };
 
 export const questionMapping = {
   1: {yes:2,no:4},

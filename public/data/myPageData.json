@@ -1,0 +1,11 @@
+[
+    
+    {
+        "id":1,
+        "memberId" : "minseo",
+        "nickname":"민서",
+        "type":["도서","공연"],
+        "muntourType": "C"
+      }
+
+]

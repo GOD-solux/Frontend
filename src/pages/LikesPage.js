@@ -43,7 +43,7 @@ const Container = styled.div`
 function LikesPage() {
   return (
     <Wrapper>
-      <Header text="공감한 글 목록" />
+      <Header text="공감한 글 목록" Login={true}/>
      <Container>
       <WritingBox>게시글 1</WritingBox>
       <WritingBox>게시글 2</WritingBox>

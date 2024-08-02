@@ -19,7 +19,7 @@ const StyledBtn = styled.div`
   margin-right: 8px; /* 버튼 사이 간격 설정 */
 `;
 
-function TypeBtn({ onClick,selected,children }) {
+function TypeBtn({ onClick,selected,children,value }) {
   // const [backgroundColor, setBackgroundColor] = useState('white');
 
   // const handleClick = () => {
@@ -29,7 +29,7 @@ function TypeBtn({ onClick,selected,children }) {
   return (
     <StyledBtn
       selected={selected}
-      onClick={onClick}
+      onClick={() => onClick(value)}
     >
       {children}
     </StyledBtn>
